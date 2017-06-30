@@ -15,11 +15,19 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="TEST.cpp">
+    <Text Include="description.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="TEST.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FirstPart.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="description.txt" />
+    <ClInclude Include="FirstPart.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

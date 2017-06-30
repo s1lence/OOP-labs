@@ -78,10 +78,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="TEST.cpp" />
+    <ClCompile Include="FirstPart.c" />
+    <ClCompile Include="TEST.c" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="description.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="FirstPart.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

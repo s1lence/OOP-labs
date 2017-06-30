@@ -5,12 +5,16 @@ About this solution:
 
 Included projects:
 	Lab_1
-
+		Pointers, strings, arrays: 
+			task is to realise a bunch of functions in two parts
 	Lab_2
-
+		Structures: 
+			task is to realise a memory dispatcher
 	Lab_3
-
+		File input-output:
+			task is to realise a bunch of functions
 	Lab_4
-
+		Classes:
+			task is to realise a doubly linked list class
 
 All this tasks for third semester.
