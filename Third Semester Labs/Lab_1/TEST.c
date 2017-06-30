@@ -9,6 +9,7 @@
 #include<stdio.h>
 
 #include"FirstPart.h"
+#include"SecondPart.h"
 
 
 int main(){
@@ -32,11 +33,11 @@ int main(){
 
 	printf("txt2double called with %s:\n", txtstring);
 
+	int i;
 	if (NULL == p)
 		printf("Can't convert string data.\n");
 	else{
 		printf("Array consist of:\n");
-		int i;
 		for (i = 0; i < n; i++)
 			printf("%.4f ", *(p + i));
 	}
@@ -46,7 +47,7 @@ int main(){
 	printf("\n\n\nResults(second part):\n");
 
 	char string[] = "abc:defg:haski", str[] = "abcklm";
-	int i, j, k;
+	int k;
 	char *arr, *bfr, *entry;
 	bfr = "haski";
 	size_t size;
