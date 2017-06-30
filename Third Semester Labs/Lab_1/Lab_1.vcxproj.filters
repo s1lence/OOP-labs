@@ -24,9 +24,15 @@
     <ClCompile Include="FirstPart.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SecondPart.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FirstPart.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SecondPart.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

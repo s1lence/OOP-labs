@@ -88,8 +88,10 @@ char ispal(const char* string){
 	int i = 0;
 
 	for (; i < length / 2 + 1; ++i){
+
 		if (string[i] != string[length - i - 1])
 			return '0';
+
 	}
 
 	return '1';

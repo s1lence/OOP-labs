@@ -79,6 +79,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="FirstPart.c" />
+    <ClCompile Include="SecondPart.c" />
     <ClCompile Include="TEST.c" />
   </ItemGroup>
   <ItemGroup>
@@ -86,6 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FirstPart.h" />
+    <ClInclude Include="SecondPart.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
