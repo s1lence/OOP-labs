@@ -78,6 +78,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Database.cpp" />
+    <ClCompile Include="Employee.cpp" />
+    <ClCompile Include="Manager.cpp" />
+    <ClCompile Include="Test.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Database.h" />
+    <ClInclude Include="Employee.h" />
+    <ClInclude Include="Manager.h" />
+    <ClInclude Include="Person.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="input.csv" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
