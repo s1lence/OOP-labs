@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="description.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="TEST.c">
       <Filter>Source Files</Filter>
     </ClCompile>

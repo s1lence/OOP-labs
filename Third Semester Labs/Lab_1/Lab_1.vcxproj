@@ -83,9 +83,6 @@
     <ClCompile Include="TEST.c" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="description.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="FirstPart.h" />
     <ClInclude Include="SecondPart.h" />
   </ItemGroup>
