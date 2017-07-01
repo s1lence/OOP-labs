@@ -362,74 +362,15 @@ void DoublyLinkedList::assign(DoublyLinkedList &dl, int first, int last){
 	after->next = firstNode;
 	firstNode->prev = after;
 
-	/*ListNode *ptr, *nd;
-	int i = 0;
-	if (dl.empty())
-	return;
-	ptr = dl.head;
-	while (ptr){
-	i++;
-	/*if (i >= first && i <= last){
-	push_back(*ptr);
-	nd = ptr->next;
-	dl._del_mid_o_back(*ptr);
-	}
-	ptr = nd;
-	if (i > last)
-	break;*-/
-	if (i >= first){
-	if (i <= last){
-	push_back(*ptr);
-	nd = ptr->next;
-	dl._del_mid_o_back(*ptr);
-	ptr = nd;
-	}
-	else
-	break;
-	}
-	else
-	ptr = ptr->next;
-	}*/
 }
 
 // inserts elements of 
 // argument list in target list starting from 
 // where position
 void DoublyLinkedList::splice(int where, const DoublyLinkedList &dl){
-
-
+	
 	this->splice(where, dl, 0, dl.size() - 1);
 
-	/*
-	//int i = 0;
-
-	//if (nullptr == (ptr = head))
-	//	*this = dl;
-
-	//while (ptr->next && ++i <= where)
-	//	ptr = ptr->next;
-	//tmp = dl.head;
-	//while (tmp){
-	//	insert_after(ptr->data, *tmp);
-	//	tmp = tmp->next;
-	//}*/
-	/*if (!head){
-	*this = dl;
-	return;
-	}
-	tmp = dl;
-	while (head->prev)
-	head = head->prev;
-	ptr = head;
-	while (ptr){
-	if (++i <= where)
-	tmp.push_front(*ptr);
-	else
-	tmp.push_back(*ptr);
-	ptr = ptr->next;
-	}
-	clear();
-	*this = tmp;*/
 }
 
 // inserts elements of argument list from first to 
@@ -466,55 +407,6 @@ void DoublyLinkedList::splice(int where, const DoublyLinkedList &dl, int first, 
 
 	}
 
-	// searching correct postiton:
-	/*for (int i = 0; i < where && after->next; ++i, after = after->next);
-
-	ListNode *tmpNode = after->next;
-
-	after->next = tmp.head;
-	tmp.head->prev = after;
-
-	tmp.head = nullptr;
-
-	ListNode *insertionTail = after->next;
-
-	while (insertionTail->next)
-	insertionTail = insertionTail->next;
-
-	insertionTail->next = tmpNode;
-	tmpNode->prev = insertionTail;*/
-
-
-	/*ListNode *ptr, *tmp;
-	int i = 0, j = 0;
-
-	tmp = dl;
-	while (tmp.head->prev)
-	tmp.head = tmp.head->prev;
-	while (++i < first)
-	tmp.pop_front();
-	while (++i <= last)
-	tmp.head = tmp.head->next;
-	while (tmp.head->next)
-	tmp.pop_back();
-	i = 0;
-	if (!head){
-	*this = tmp;
-	return;
-	}
-	while (head->prev)
-	head = head->prev;
-	ptr = head;
-	while (++i <= where && ptr){
-	tmp.push_front(*ptr);
-	ptr = ptr->next;
-	}
-	while (ptr){
-	tmp.push_back(*ptr);
-	ptr = ptr->next;
-	}
-	clear();
-	*this = tmp;*/
 }
 
 // prints list
