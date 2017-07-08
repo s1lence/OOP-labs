@@ -145,23 +145,16 @@ void DoublyLinkedList::insert_ord(const ListNode &nd){
 
 }
 
-//Sorts list in nondescending order
+// Sorts list in nondescending order
 void DoublyLinkedList::sort(){
 
-	int size = this->size();
-	const char* *arr = new const char*[size];
-	
-	ListNode* node = head;
+	/*
+	 * cheap & angry:
+	 *		bubble sort
+	 *
+	 */
 
-	for (int i = 0; i < size; ++i, node = node->next)
-		arr[i] = node->data;
-
-	//qsort(arr, size, sizeof(char*), strcmp);
-
-	for (int i = 0; i < size; ++i, node = node->next)
-		strcpy(node->data, arr[i]);
-
-	/*ListNode *ptr_end, *ptr, *tmp;
+	ListNode *ptr_end, *ptr, tmp;
 	bool swapped = true;
 
 	if (nullptr == (ptr_end = head))
@@ -175,17 +168,14 @@ void DoublyLinkedList::sort(){
 		swapped = false;
 		ptr = head->next;
 
-		while (ptr != ptr_end){
+		while (ptr && ptr != ptr_end->next){
 
-			if (strcmp(ptr->prev->data, ptr->data) > 0){
+			if (ptr->prev && strcmp(ptr->prev->data, ptr->data) > 0){
 
-				tmp = ptr->prev;
-				tmp->next = ptr->next;
+				tmp.data = ptr->data;
+				ptr->data = ptr->prev->data;
 
-				ptr->prev = tmp->prev;
-				ptr->next = tmp;
-
-				tmp->prev = ptr;
+				ptr->prev->data = tmp.data;
 				swapped = true;
 
 			}
@@ -196,7 +186,7 @@ void DoublyLinkedList::sort(){
 
 		ptr_end = ptr_end->prev;
 
-	}*/
+	}
 
 }
 
@@ -264,7 +254,7 @@ void DoublyLinkedList::merge(DoublyLinkedList &nd){
 
 	nd.head = nullptr;
 
-	//sort();
+	sort();
 
 }
 

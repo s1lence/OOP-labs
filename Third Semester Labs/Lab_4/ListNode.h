@@ -26,9 +26,13 @@ namespace lab4{
 
 		inline ListNode(char *_data) :data(_data), prev(nullptr), next(nullptr){};
 
+		inline ListNode(const ListNode& node) :data(node.data), prev(node.prev), next(node.next){}
+
 		inline ~ListNode(void){};
 
 		inline bool operator==(const ListNode& node){ return (0 == strcmp(data, node.data)); }
+
+		inline bool operator<(const ListNode& node){ return (0 < strcmp(data, node.data)); }
 
 	};
 	

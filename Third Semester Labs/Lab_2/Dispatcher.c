@@ -120,8 +120,8 @@ int deallocate(mem_dispatcher *md, int block_id){
 	if (ptr->next && !ptr->next->status){
 
 		ptr->size += ptr->next->size;
-
 		tmp = ptr->next;
+
 		ptr->next = tmp->next;
 		free(tmp);
 
@@ -131,10 +131,9 @@ int deallocate(mem_dispatcher *md, int block_id){
 	if (p->next == ptr && !p->status){
 
 		p->size += ptr->size;
-
 		p->next = ptr->next;
+
 		free(ptr);
-		
 		ptr = p->next;
 
 	}
@@ -164,6 +163,7 @@ void defragment(mem_dispatcher *md){
 		
 			next = cur->next;
 			cur->next = next->next;
+
 			ptr->size += next->size;
 			free(next);
 		

@@ -79,18 +79,19 @@ int main(){
 	// merge
 	Lst2.merge(Lst1);
 
-	cout << endl << "Test merge:" << endl << "2nd one:" << endl;
+	cout << endl << "Test merge:" << endl << "2nd one before:" << endl;
 	Lst2.print();
 
-	Lst2.clear();
-	Lst2.push_front(ListNode("text"));
-
+	Lst1.push_front(ListNode("text"));
 	Lst1.push_back(ListNode("string"));
+
+	cout << endl << "1st one before:" << endl;
+	Lst1.print();
 
 	Lst1.merge(Lst2);
 
-	cout << endl << "Test merge:" << endl << "2nd one:" << endl;
-	Lst1.print_bkw();
+	cout << endl << "Test merge:" << endl << "1st one after:" << endl;
+	Lst1.print();
 
 
 	return 0;

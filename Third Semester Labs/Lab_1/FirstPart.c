@@ -101,28 +101,28 @@ char ispal(const char* string){
 char* makepal(const char* string){
 
 	int length = strlen(string);
-	int L = 0, R = length - 1, count = 0, tmpCount;
+	int leftBorder = 0, rightBorder = length - 1, count = 0, tmpCount;
 
-	while (L < R){
+	while (leftBorder < rightBorder){
 
-		while (string[L] != string[R]){
+		while (string[leftBorder] != string[rightBorder]){
 
-			L++; count++;
+			leftBorder++; count++;
 
 		}
 
 		tmpCount = 0;
 
-		while (string[L] == string[R]){
+		while (string[leftBorder] == string[rightBorder]){
 
-			L++; R--; tmpCount++;
+			leftBorder++; rightBorder--; tmpCount++;
 
 		}
 
-		if (L < R){
+		if (leftBorder < rightBorder){
 
-			R = length - 1;
-			L -= tmpCount - 1;
+			rightBorder = length - 1;
+			leftBorder -= tmpCount - 1;
 			count += tmpCount;
 
 		}
