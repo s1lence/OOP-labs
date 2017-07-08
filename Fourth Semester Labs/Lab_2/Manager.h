@@ -39,7 +39,7 @@ namespace lab2{
 
 	private:
 		
-		std::list<Person *> subordinates;// list subordinates
+		std::list<Person *> subordinates; // list subordinates
 	
 	};
 

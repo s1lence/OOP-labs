@@ -80,7 +80,7 @@ namespace lab1{
 
 		// Operators
 		// Sets or gets the element at the specified index.
-		int& operator [](int i){ return buf[i]; }
+		int& operator[](int i){ return buf[i]; }
 
 	private:
 		// put your own data members here

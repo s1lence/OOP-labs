@@ -30,9 +30,9 @@ namespace lab2{
 	
 	protected:
 	
-		string f_name;//first name
+		string f_name; //first name
 		
-		string l_name;//last name
+		string l_name; //last name
 		
 		int age;
 
