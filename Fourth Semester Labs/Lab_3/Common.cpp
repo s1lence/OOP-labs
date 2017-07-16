@@ -7,7 +7,12 @@
 ***********************************************/
 
 
+#ifndef _COMMON_REALISATION_
+#define _COMMON_REALISATION_
+
+#ifndef _COMMON_H_
 #include"Common.h"
+#endif
 
 namespace lab3{
 
@@ -20,17 +25,18 @@ namespace lab3{
 
 			std::ifstream input(csvFileName, std::ios_base::in);
 			std::vector<StoredData> objects;
-			const char* readed;
+			char readed[500];
 
-			while (!std::ios_base::eof){
-				std::ifstream::getline(readed);
+			while (!std::ios_base::eofbit){
+				input.getline(readed, 500);
 				objects.push_back(StoredData(readed));
 			}
 
-			int size = objects.size();
-			std::qsort(&objects, objects.size(), sizeof(StoredData));
+			size_t begins=0, size = objects.size();
+			std::qsort(&objects, objects.size(), sizeof(StoredData),&lab3::utility::compare);
 
-			root = buildTree(objects, 0, size);
+			root = buildTree(objects, begins, size);
+			input.close();
 		}
 
 		template<class StoredData>
@@ -62,17 +68,18 @@ namespace lab3{
 		}
 
 		template<class StoredData>
+		template<class Self, class Initialiser, class Comparable, class Container>
 		void ProtectedBinaryTreeInterface<StoredData>::apply(
-			void(*p2funcExe)(ProtectedBinaryNodeInterface<StoredData>&),
+			lab3::utility::Appliable<Self, Initialiser, Comparable, Container> &obj2call,
 			ProtectedBinaryNodeInterface<StoredData> *first,
 			ProtectedBinaryNodeInterface<StoredData> *last)
 		{
-
 			ProtectedBinaryNodeInterface<StoredData> *current = first;
+
 			while (current != last){
 
-				p2funcExe(current);
-				current = next(current);
+				obj2call(*current);
+				current = next(*current);
 
 			}
 		}
@@ -132,7 +139,7 @@ namespace lab3{
 			ProtectedBinaryNodeInterface<StoredData> *next;
 
 			if (nullptr == current.right){
-				next = current;
+				next = &current;
 
 				while (next->parent && next->parent->left != next)
 					next = next->parent;
@@ -175,7 +182,7 @@ namespace lab3{
 			ProtectedBinaryTreeInterface<StoredData>::min(
 			ProtectedBinaryNodeInterface<StoredData> &root)
 		{
-			ProtectedBinaryNodeInterface<StoredData> *min = root;
+			ProtectedBinaryNodeInterface<StoredData> *min = &root;
 
 			while (min->left)
 				min = min->left;
@@ -202,8 +209,8 @@ namespace lab3{
 			std::size_t current)
 		{
 
-			std::size_t left = depth(root->left);
-			std::size_t right = depth(root->right);
+			std::size_t left = depth(root->left, current + 1);
+			std::size_t right = depth(root->right, current + 1);
 
 			return left > right ? left : right;
 		}
@@ -220,17 +227,17 @@ namespace lab3{
 			ProtectedBinaryNodeInterface<StoredData> * 
 				root = new ProtectedBinaryNodeInterface<StoredData>(objects[middle + leftBound], nullptr, nullptr, nullptr);
 
-			root->left = buildTree(objects, leftBound, middle - 1);
+			root->left = buildTree(objects, leftBound, --middle);
 			root->left->parent = root;
 
-			root->right = buildTree(objects, middle + 1, rightBound);
+			root->right = buildTree(objects, ++++middle, rightBound);
 			root->right->parent = root;
 
 			return root;
 		}
 
 	}
-
+	
 }
 
-
+#endif /*_COMMON_REALISATION_*/

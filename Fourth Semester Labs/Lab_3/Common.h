@@ -12,6 +12,8 @@
 #include<fstream>
 #include<vector>
 
+#include"Utility.h"
+
 namespace lab3{
 
 	namespace common{
@@ -42,6 +44,9 @@ namespace lab3{
 			// nothing to be destructed here
 			~ProtectedBinaryNodeInterface(){}
 
+			bool operator==(const _bin_node& nd){ return data == nd.data; }
+			bool operator<(const _bin_node& nd){ return data < nd.data; }
+
 		};
 
 		template<class StoredData>
@@ -66,7 +71,11 @@ namespace lab3{
 
 			// applies given function to all elements in given range:
 			// first includes, last excludes
-			void apply(void(*p2funcExe)(_bin_node&), _bin_node * first, _bin_node * last = nullptr);
+			// result is expects to be container
+			template<class Self, class Initialiser, class Comparable, class Container>
+			void apply(utility::Appliable<Self, Initialiser, Comparable, Container> &obj2call,
+				_bin_node * first,
+				_bin_node * last = nullptr);
 
 			// deletes given node
 			void remove(_bin_node &item);
@@ -86,6 +95,9 @@ namespace lab3{
 			_bin_node* min(_bin_node &root); // gives minimum element of given tree
 			_bin_node* max(_bin_node &root); // gives maximum elements of given tree
 
+			_bin_node* getMin(){ return min(*root); } // returns pointer to minimum node
+			_bin_node* getMax(){ return max(*root); } // returns pointer to maximum node
+
 			std::size_t depth(_bin_node &root, std::size_t current = 0); // returns depth of given tree
 			std::size_t heigth(void){ return depth(root); } // returns tree height
 			
@@ -101,5 +113,9 @@ namespace lab3{
 	}
 
 }
+
+#ifndef _COMMON_REALISATION_
+#include"Common.cpp"
+#endif /*_COMMON_REALISATION_*/
 
 #endif // !_COMMON_H_
