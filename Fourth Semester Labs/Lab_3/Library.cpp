@@ -16,7 +16,7 @@ typedef CBinTree tree;
 node::CTreeNode(const char *csvData){
 
 	/*
-	 *	csvData created on this template:
+	 *	csvData based on this template:
 	 *		m_Bookid; m_Author; m_Title; m_Year; m_Quantity
 	 *	
 	 */
@@ -43,10 +43,13 @@ node::CTreeNode(const char *csvData){
 }
 
 bool node::operator==(const node &nd){
-	if (nullptr == m_Author)
+	if (nullptr != m_Author)
+		return m_Author == nd.m_Author;
+
+	if (nullptr != m_Title)
 		return m_Title == nd.m_Title;
-	
-	return m_Author == nd.m_Author;
+
+	return m_Bookid == nd.m_Bookid;
 }
 
 void node::print()const{
@@ -60,14 +63,26 @@ void tree::addBook(CTreeNode &node){
 }
 
 void tree::deleteBook(unsigned bookid){
-
+	CTreeNode item(nullptr, nullptr, bookid);
+	remove(*find(item));
 }
 
-void tree::findByAuthor(utility::Appliable<tree,const char*, node, std::vector<node*>> &what2call){
-
+void tree::findByAuthor(
+	utility::Appliable<
+	tree,
+	const char*, 
+	common::ProtectedBinaryNodeInterface<node>, 
+	std::vector<node*>> &what2call)
+{
 	apply(what2call, getMin());
 }
 
-void tree::findByName(utility::Appliable<tree,const char*, node, std::vector<node*>> &what2call){
+void tree::findByName(
+	utility::Appliable<
+	tree,
+	const char*, 
+	common::ProtectedBinaryNodeInterface<node>, 
+	std::vector<node*>> &what2call)
+{
 	apply(what2call, getMin());
 }

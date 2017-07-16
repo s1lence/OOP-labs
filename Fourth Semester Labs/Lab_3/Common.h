@@ -44,6 +44,7 @@ namespace lab3{
 			// nothing to be destructed here
 			~ProtectedBinaryNodeInterface(){}
 
+			bool operator==(const StoredDataType& item){ return data == item; }
 			bool operator==(const _bin_node& nd){ return data == nd.data; }
 			bool operator<(const _bin_node& nd){ return data < nd.data; }
 
@@ -56,7 +57,7 @@ namespace lab3{
 
 		protected:
 
-			// those aren't allowed by task description
+			// these aren't allowed by task description
 			ProtectedBinaryTreeInterface() = delete;
 			ProtectedBinaryTreeInterface(const _bin_node&) = delete;
 			
@@ -72,10 +73,8 @@ namespace lab3{
 			// applies given function to all elements in given range:
 			// first includes, last excludes
 			// result is expects to be container
-			template<class Self, class Initialiser, class Comparable, class Container>
-			void apply(utility::Appliable<Self, Initialiser, Comparable, Container> &obj2call,
-				_bin_node * first,
-				_bin_node * last = nullptr);
+			template<class Callable>
+			void apply(Callable &obj2call, _bin_node * first, _bin_node * last = nullptr);
 
 			// deletes given node
 			void remove(_bin_node &item);
@@ -84,7 +83,7 @@ namespace lab3{
 			void erase(_bin_node *subtree);
 
 			// searches given data in tree using given predicate function
-			_bin_node* find(bool(*p2funcComp)(_bin_node const*, const StoredData&), const StoredData&);
+			_bin_node* find(const StoredData&);
 			
 			/* functions for sequential passage */
 			_bin_node* next(_bin_node &current); // gives next according to order

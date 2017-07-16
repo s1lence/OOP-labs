@@ -27,15 +27,9 @@ namespace lab3{
 			// empty node is not allowed
 			CTreeNode() = delete;
 
-			// special node with only author info
-			CTreeNode(const char * author,int anything)
-				: m_Bookid(anything), m_Year(anything),
-				m_Quantity(anything), m_Author(author),
-				m_Title(nullptr){}
-
-			// special node with only title info
-			CTreeNode(const char * author, const char *title)
-				: m_Bookid(0), m_Year(0),
+			// special ctor for search nodes
+			CTreeNode(const char * author, const char *title, int bookid)
+				: m_Bookid(bookid), m_Year(0),
 				m_Quantity(0), m_Author(nullptr),
 				m_Title(title){}
 
@@ -56,6 +50,8 @@ namespace lab3{
 
 			void print()const;
 
+			int cCompare(const CTreeNode& node)const{ return m_Bookid - node.m_Bookid; }
+
 		private:
 
 			unsigned m_Bookid;
@@ -68,7 +64,7 @@ namespace lab3{
 		class CBinTree : common::ProtectedBinaryTreeInterface<CTreeNode>{
 		public:
 
-			// those is not allowed
+			// these is not allowed
 			CBinTree() = delete;
 			CBinTree(const CBinTree&) = delete;
 
@@ -78,9 +74,19 @@ namespace lab3{
 
 			void deleteBook(unsigned bookid);
 
-			void findByAuthor(utility::Appliable<CBinTree, const char*, CTreeNode, std::vector<CTreeNode*>> &what2call);
+			void findByAuthor(
+				utility::Appliable<
+				CBinTree, 
+				const char*, 
+				common::ProtectedBinaryNodeInterface<CTreeNode>, 
+				std::vector<CTreeNode*>> &what2call);
 
-			void findByName(utility::Appliable<CBinTree, const char*, CTreeNode, std::vector<CTreeNode*>> &what2call);
+			void findByName(
+				utility::Appliable<
+				CBinTree, 
+				const char*, 
+				common::ProtectedBinaryNodeInterface<CTreeNode>, 
+				std::vector<CTreeNode*>> &what2call);
 
 		};
 

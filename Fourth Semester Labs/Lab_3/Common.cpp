@@ -68,9 +68,9 @@ namespace lab3{
 		}
 
 		template<class StoredData>
-		template<class Self, class Initialiser, class Comparable, class Container>
+		template<class Callable>
 		void ProtectedBinaryTreeInterface<StoredData>::apply(
-			lab3::utility::Appliable<Self, Initialiser, Comparable, Container> &obj2call,
+			Callable &obj2call,
 			ProtectedBinaryNodeInterface<StoredData> *first,
 			ProtectedBinaryNodeInterface<StoredData> *last)
 		{
@@ -89,12 +89,12 @@ namespace lab3{
 			ProtectedBinaryNodeInterface<StoredData> &item)
 		{
 
-			if (item->right){
+			if (item.right){
 
 				ProtectedBinaryNodeInterface<StoredData> * 
-					willRemoved = min(item->right);
+					willRemoved = min(*item.right);
 
-				item->data = willRemoved->data;
+				item.data = willRemoved->data;
 
 				willRemoved->parent->left = nullptr;
 				delete willRemoved;
@@ -102,17 +102,17 @@ namespace lab3{
 			}
 			else{
 
-				if (item->left)
-					item->left->parent = item->parent;
+				if (item.left)
+					item.left->parent = item.parent;
 
-				if (item->parent){
-					if (item->parent->left == item)
-						item->parent->left = item->left;
+				if (item.parent){
+					if (*item.parent->left == item)
+						item.parent->left = item.left;
 					else
-						item->parent->right = item->left;
+						item.parent->right = item.left;
 				}
 
-				delete item;
+				delete &item;
 			}
 		}
 
@@ -129,6 +129,21 @@ namespace lab3{
 			erase(subtree->right);
 
 			delete subtree;
+		}
+
+		template<class StoredData>
+		ProtectedBinaryNodeInterface<StoredData>*
+			ProtectedBinaryTreeInterface<StoredData>::find(
+			const StoredData& item)
+		{
+				ProtectedBinaryNodeInterface<StoredData> *p = getMin();
+
+				while (p){
+					if (p->data == item)
+						return p;
+
+					p = next(*p);
+				}
 		}
 
 		template<class StoredData>
