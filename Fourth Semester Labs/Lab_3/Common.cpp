@@ -51,7 +51,7 @@ namespace lab3{
 		void ProtectedBinaryTreeInterface<StoredData>::emplace(
 			const StoredData& item)
 		{
-			ProtectedBinaryNodeInterface<StoredData> *previous, *current = root;
+			ProtectedBinaryNodeInterface<StoredData> *previous = root, *current = root;
 
 			while (current){
 				previous = current;
@@ -86,15 +86,17 @@ namespace lab3{
 
 		template<class StoredData>
 		void ProtectedBinaryTreeInterface<StoredData>::remove(
-			ProtectedBinaryNodeInterface<StoredData> &item)
+			ProtectedBinaryNodeInterface<StoredData> *item)
 		{
+			if (nullptr == item)
+				return;
 
-			if (item.right){
+			if (item->right){
 
 				ProtectedBinaryNodeInterface<StoredData> * 
-					willRemoved = min(*item.right);
+					willRemoved = min(*item->right);
 
-				item.data = willRemoved->data;
+				item->data = willRemoved->data;
 
 				willRemoved->parent->left = nullptr;
 				delete willRemoved;
@@ -102,17 +104,17 @@ namespace lab3{
 			}
 			else{
 
-				if (item.left)
-					item.left->parent = item.parent;
+				if (item->left)
+					item->left->parent = item->parent;
 
-				if (item.parent){
-					if (*item.parent->left == item)
-						item.parent->left = item.left;
+				if (item->parent){
+					if (item == item->parent->left)
+						item->parent->left = item->left;
 					else
-						item.parent->right = item.left;
+						item->parent->right = item->left;
 				}
 
-				delete &item;
+				delete item;
 			}
 		}
 
@@ -144,6 +146,8 @@ namespace lab3{
 
 					p = next(*p);
 				}
+
+				return nullptr;
 		}
 
 		template<class StoredData>

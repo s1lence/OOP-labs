@@ -64,7 +64,7 @@ void tree::addBook(CTreeNode &node){
 
 void tree::deleteBook(unsigned bookid){
 	CTreeNode item(nullptr, nullptr, bookid);
-	remove(*find(item));
+	remove(find(item));
 }
 
 void tree::findByAuthor(

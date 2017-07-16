@@ -77,7 +77,7 @@ namespace lab3{
 			void apply(Callable &obj2call, _bin_node * first, _bin_node * last = nullptr);
 
 			// deletes given node
-			void remove(_bin_node &item);
+			void remove(_bin_node *item);
 
 			// erases given tree
 			void erase(_bin_node *subtree);
@@ -101,6 +101,8 @@ namespace lab3{
 			std::size_t heigth(void){ return depth(root); } // returns tree height
 			
 			_bin_node * buildTree(std::vector<StoredData>&, std::size_t&, std::size_t&); // requires sorted vector of objects
+
+			bool empty(void)const{ return nullptr == root; }
 
 		private:
 

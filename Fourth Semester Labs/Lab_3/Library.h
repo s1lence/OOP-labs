@@ -88,6 +88,8 @@ namespace lab3{
 				common::ProtectedBinaryNodeInterface<CTreeNode>, 
 				std::vector<CTreeNode*>> &what2call);
 
+			friend utility::Appliable<CBinTree, const char*, common::ProtectedBinaryNodeInterface<CTreeNode>, std::vector<CTreeNode*>>;
+
 		};
 
 	}
