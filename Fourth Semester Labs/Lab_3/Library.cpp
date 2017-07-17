@@ -59,9 +59,9 @@ bool node::operator==(const node &nd)
 
 void node::print()const
 {
-	std::cout << m_Bookid << " " << m_Author <<
-		" " << m_Title << " " << m_Year <<
-		" " << m_Quantity;
+	std::cout << "Book id: " << m_Bookid << std::endl << "Author: " << m_Author << std::endl <<
+		"Title: " << m_Title << std::endl << "Year: " << m_Year << std::endl <<
+		"Quantity: " << m_Quantity << std::endl << std::endl;
 	std::cout.flush();
 }
 

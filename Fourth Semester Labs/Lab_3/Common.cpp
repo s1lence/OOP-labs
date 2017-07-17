@@ -34,13 +34,9 @@ namespace lab3{
 
 			int begins = 0, size = objects.size() - 1;
 			std::sort(objects.begin(), objects.end());
-			// std::qsort(&objects, objects.size(), sizeof(StoredData*),&lab3::utility::compare<StoredData>);
-
+			
 			root = buildTree(objects, begins, size);
 			input.close();
-
-			for (auto &i : objects)
-				i.cleanStrings();
 		}
 
 		template<class StoredData>
@@ -81,12 +77,17 @@ namespace lab3{
 		{
 			ProtectedBinaryNodeInterface<StoredData> *current = first;
 
+			if (nullptr == last)
+				last = getMax();
+
 			while (current != last){
 
 				obj2call(*current);
 				current = next(*current);
 
 			}
+
+			obj2call(*current);
 		}
 
 		template<class StoredData>
@@ -169,6 +170,8 @@ namespace lab3{
 
 				while (next->parent && next->parent->left != next)
 					next = next->parent;
+
+				return next->parent;
 			}
 			else{
 				next = current.right;
@@ -221,7 +224,7 @@ namespace lab3{
 			ProtectedBinaryTreeInterface<StoredData>::max(
 			ProtectedBinaryNodeInterface<StoredData> &root)const
 		{
-			ProtectedBinaryNodeInterface<StoredData> *max = root;
+			ProtectedBinaryNodeInterface<StoredData> *max = &root;
 
 			while (max->right)
 				max = max->right;
@@ -245,26 +248,22 @@ namespace lab3{
 		ProtectedBinaryNodeInterface<StoredData> * 
 			ProtectedBinaryTreeInterface<StoredData>::buildTree(
 			std::vector<StoredData> &objects, 
-			int &leftBound, 
-			int &rightBound)
+			int leftBound, 
+			int rightBound)
 		{
 			if (rightBound < leftBound)
 				return nullptr;
 
 			int middle = (rightBound - leftBound) / 2;
 
-			/*DEBUG*/
-			StoredData tmp = objects[leftBound + middle];
-			/*DEBUG*/
-
 			ProtectedBinaryNodeInterface<StoredData> * 
 				root = new ProtectedBinaryNodeInterface<StoredData>(objects[middle + leftBound], nullptr, nullptr, nullptr);
 
-			root->left = buildTree(objects, leftBound, --middle);
+			root->left = buildTree(objects, leftBound, leftBound + middle - 1);
 			if (root->left)
 				root->left->parent = root;
 
-			root->right = buildTree(objects, leftBound + ++++middle, rightBound);
+			root->right = buildTree(objects, leftBound + middle + 1, rightBound);
 			if (root->right)
 				root->right->parent = root;
 

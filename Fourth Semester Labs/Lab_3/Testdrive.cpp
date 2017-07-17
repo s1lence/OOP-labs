@@ -20,7 +20,7 @@ int main(){
 	library::CBinTree t("../Lab_3/library.csv");
 
 	
-
+	std::cout << "Library has:" << std::endl;
 	t.print();
 
 	return 0;

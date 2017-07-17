@@ -101,7 +101,7 @@ namespace lab3{
 			std::size_t depth(_bin_node &root, std::size_t current = 0); // returns depth of given tree
 			std::size_t heigth(void){ return depth(root); } // returns tree height
 			
-			_bin_node * buildTree(std::vector<StoredData>&, int&, int&); // requires sorted vector of objects
+			_bin_node * buildTree(std::vector<StoredData>&, int, int); // requires sorted vector of objects
 
 			bool empty(void)const{ return nullptr == root; }
 
