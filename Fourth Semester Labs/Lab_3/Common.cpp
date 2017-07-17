@@ -3,7 +3,7 @@
 * synopsis: definition common parent class for third lab
 * author: R. Neshta
 * written: 08/07/17
-* last modified: 12/07/17
+* last modified: 17/07/17
 ***********************************************/
 
 
@@ -27,16 +27,20 @@ namespace lab3{
 			std::vector<StoredData> objects;
 			char readed[500];
 
-			while (!std::ios_base::eofbit){
+			while (!input.eof()){
 				input.getline(readed, 500);
-				objects.push_back(StoredData(readed));
+				objects.push_back(*(new StoredData(readed)));
 			}
 
-			size_t begins=0, size = objects.size();
-			std::qsort(&objects, objects.size(), sizeof(StoredData),&lab3::utility::compare);
+			int begins = 0, size = objects.size() - 1;
+			std::sort(objects.begin(), objects.end());
+			// std::qsort(&objects, objects.size(), sizeof(StoredData*),&lab3::utility::compare<StoredData>);
 
 			root = buildTree(objects, begins, size);
 			input.close();
+
+			for (auto &i : objects)
+				i.cleanStrings();
 		}
 
 		template<class StoredData>
@@ -65,6 +69,7 @@ namespace lab3{
 				previous->right = new ProtectedBinaryNodeInterface<StoredData>(item, nullptr, nullptr, previous);
 			else
 				previous->left = new ProtectedBinaryNodeInterface<StoredData>(item, nullptr, nullptr, previous);
+			++size;
 		}
 
 		template<class StoredData>
@@ -72,7 +77,7 @@ namespace lab3{
 		void ProtectedBinaryTreeInterface<StoredData>::apply(
 			Callable &obj2call,
 			ProtectedBinaryNodeInterface<StoredData> *first,
-			ProtectedBinaryNodeInterface<StoredData> *last)
+			ProtectedBinaryNodeInterface<StoredData> *last) const
 		{
 			ProtectedBinaryNodeInterface<StoredData> *current = first;
 
@@ -116,6 +121,7 @@ namespace lab3{
 
 				delete item;
 			}
+			--size;
 		}
 
 		template<class StoredData>
@@ -131,12 +137,13 @@ namespace lab3{
 			erase(subtree->right);
 
 			delete subtree;
+			--size;
 		}
 
 		template<class StoredData>
 		ProtectedBinaryNodeInterface<StoredData>*
 			ProtectedBinaryTreeInterface<StoredData>::find(
-			const StoredData& item)
+			const StoredData& item)const
 		{
 				ProtectedBinaryNodeInterface<StoredData> *p = getMin();
 
@@ -153,7 +160,7 @@ namespace lab3{
 		template<class StoredData>
 		ProtectedBinaryNodeInterface<StoredData>* 
 			ProtectedBinaryTreeInterface<StoredData>::next(
-			ProtectedBinaryNodeInterface<StoredData> &current)
+			ProtectedBinaryNodeInterface<StoredData> &current)const
 		{
 			ProtectedBinaryNodeInterface<StoredData> *next;
 
@@ -176,7 +183,7 @@ namespace lab3{
 		template<class StoredData>
 		ProtectedBinaryNodeInterface<StoredData>* 
 			ProtectedBinaryTreeInterface<StoredData>::prev(
-			ProtectedBinaryNodeInterface<StoredData> &current)
+			ProtectedBinaryNodeInterface<StoredData> &current)const
 		{
 			ProtectedBinaryNodeInterface<StoredData> *prev;
 
@@ -199,7 +206,7 @@ namespace lab3{
 		template<class StoredData>
 		ProtectedBinaryNodeInterface<StoredData>* 
 			ProtectedBinaryTreeInterface<StoredData>::min(
-			ProtectedBinaryNodeInterface<StoredData> &root)
+			ProtectedBinaryNodeInterface<StoredData> &root)const
 		{
 			ProtectedBinaryNodeInterface<StoredData> *min = &root;
 
@@ -212,7 +219,7 @@ namespace lab3{
 		template<class StoredData>
 		ProtectedBinaryNodeInterface<StoredData>* 
 			ProtectedBinaryTreeInterface<StoredData>::max(
-			ProtectedBinaryNodeInterface<StoredData> &root)
+			ProtectedBinaryNodeInterface<StoredData> &root)const
 		{
 			ProtectedBinaryNodeInterface<StoredData> *max = root;
 
@@ -238,19 +245,28 @@ namespace lab3{
 		ProtectedBinaryNodeInterface<StoredData> * 
 			ProtectedBinaryTreeInterface<StoredData>::buildTree(
 			std::vector<StoredData> &objects, 
-			std::size_t &leftBound, 
-			std::size_t &rightBound)
+			int &leftBound, 
+			int &rightBound)
 		{
+			if (rightBound < leftBound)
+				return nullptr;
 
-			std::size_t middle = (rightBound - leftBound) / 2;
+			int middle = (rightBound - leftBound) / 2;
+
+			/*DEBUG*/
+			StoredData tmp = objects[leftBound + middle];
+			/*DEBUG*/
+
 			ProtectedBinaryNodeInterface<StoredData> * 
 				root = new ProtectedBinaryNodeInterface<StoredData>(objects[middle + leftBound], nullptr, nullptr, nullptr);
 
 			root->left = buildTree(objects, leftBound, --middle);
-			root->left->parent = root;
+			if (root->left)
+				root->left->parent = root;
 
-			root->right = buildTree(objects, ++++middle, rightBound);
-			root->right->parent = root;
+			root->right = buildTree(objects, leftBound + ++++middle, rightBound);
+			if (root->right)
+				root->right->parent = root;
 
 			return root;
 		}

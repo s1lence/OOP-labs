@@ -3,7 +3,7 @@
 * synopsis: declaration utility for common apply function
 * author: R. Neshta
 * written: 14/07/17
-* last modified: 14/07/17
+* last modified: 17/07/17
 ***********************************************/
 
 #ifndef _UTILITY_H_
@@ -16,7 +16,7 @@ namespace lab3{
 		// describes what operations allowed in Appliable class
 		enum class Operations{ FIND_SINGLE, FIND_MULTIPLE, PRINT_N_DELETE, PRINT };
 
-		template<class Self, class Initialiser, class Comparable, class Container>
+		template<class Self, class Comparable, class Container>
 		class Appliable{
 
 			/*
@@ -39,8 +39,8 @@ namespace lab3{
 			Appliable() = delete;
 			Appliable(const Appliable&) = delete;
 
-			Appliable(Self &whoCalls, Comparable &item2compare, Operations whatToDo) :
-				data(&item2compare),
+			Appliable(Self * whoCalls, Comparable *item2compare, Operations whatToDo) :
+				data(item2compare),
 				option(whatToDo),
 				creator(whoCalls){}
 
@@ -57,7 +57,7 @@ namespace lab3{
 		};
 
 		template<class Comparable>
-		int compare(const Comparable *node1, const Comparable *node2);
+		int compare(const void *node1, const void *node2);
 
 	}
 

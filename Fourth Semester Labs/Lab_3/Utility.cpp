@@ -3,7 +3,7 @@
 * synopsis: definition utility
 * author: R. Neshta
 * written: 08/07/17
-* last modified: 12/07/17
+* last modified: 17/07/17
 ***********************************************/
 
 #ifndef _UTILITY_REALISATION_
@@ -17,14 +17,14 @@ namespace lab3{
 
 	namespace utility{
 
-		template<class Self, class Initialiser, class Comparable, class Container>
-		void Appliable<Self, Initialiser, Comparable, Container>::operator()(Comparable &item){
+		template<class Self, class Comparable, class Container>
+		void Appliable<Self, Comparable, Container>::operator()(Comparable &item){
 
 			switch (option){
 
 			case Operations::FIND_SINGLE:
 
-				if (*data == item.data){
+				if (data && *data == item.data){
 					results.push_back(&item.data);
 					callable = false;
 				}
@@ -32,7 +32,7 @@ namespace lab3{
 
 			case Operations::FIND_MULTIPLE:
 
-				if (*data == item.data)
+				if (data && *data == item.data)
 					results.push_back(&item.data);
 				break;
 
@@ -50,9 +50,12 @@ namespace lab3{
 		}
 
 		template<class Comparable>
-		int compare(const Comparable &data1, const Comparable &data2){
+		int compare(const void *node1, const void *node2){
 
-			return data1.cCompare(data2);
+			const Comparable * data1 = static_cast<const Comparable*>(node1);
+			const Comparable * data2 = static_cast<const Comparable*>(node2);
+
+			return data1->cCompare(*data2);
 		}
 
 	}

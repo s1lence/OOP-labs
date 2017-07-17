@@ -3,7 +3,7 @@
 * synopsis: declaration classes for first variant of third lab
 * author: R. Neshta
 * written: 12/07/17
-* last modified: 12/07/17
+* last modified: 17/07/17
 ***********************************************/
 
 
@@ -42,6 +42,8 @@ namespace lab3{
 				m_Quantity(nd.m_Quantity), m_Author(nd.m_Author),
 				m_Title(nd.m_Title){}
 
+			~CTreeNode(){}
+
 			// less node has less book id
 			bool operator<(const CTreeNode& nd)const{ return m_Bookid < nd.m_Bookid; }
 
@@ -51,6 +53,8 @@ namespace lab3{
 			void print()const;
 
 			int cCompare(const CTreeNode& node)const{ return m_Bookid - node.m_Bookid; }
+
+			void cleanStrings();
 
 		private:
 
@@ -77,18 +81,18 @@ namespace lab3{
 			void findByAuthor(
 				utility::Appliable<
 				CBinTree, 
-				const char*, 
 				common::ProtectedBinaryNodeInterface<CTreeNode>, 
 				std::vector<CTreeNode*>> &what2call);
 
 			void findByName(
 				utility::Appliable<
 				CBinTree, 
-				const char*, 
 				common::ProtectedBinaryNodeInterface<CTreeNode>, 
 				std::vector<CTreeNode*>> &what2call);
 
-			friend utility::Appliable<CBinTree, const char*, common::ProtectedBinaryNodeInterface<CTreeNode>, std::vector<CTreeNode*>>;
+			void print()const;
+
+			friend utility::Appliable<CBinTree, common::ProtectedBinaryNodeInterface<CTreeNode>, std::vector<CTreeNode*>>;
 
 		};
 

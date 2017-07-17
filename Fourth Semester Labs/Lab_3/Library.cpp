@@ -3,7 +3,7 @@
 * synopsis: definition classes for first variant of third lab
 * author: R. Neshta
 * written: 12/07/17
-* last modified: 12/07/17
+* last modified: 17/07/17
 ***********************************************/
 
 #include"Library.h"
@@ -13,7 +13,8 @@ using namespace lab3::library;
 typedef CTreeNode node;
 typedef CBinTree tree;
 
-node::CTreeNode(const char *csvData){
+node::CTreeNode(const char *csvData)
+{
 
 	/*
 	 *	csvData based on this template:
@@ -35,14 +36,18 @@ node::CTreeNode(const char *csvData){
 
 	m_Bookid = std::atoi(buffers[0].c_str());
 
-	m_Author = buffers[1].c_str();
-	m_Title = buffers[2].c_str();
+	m_Author = new char[buffers[1].length() + 1];
+	m_Title = new char[buffers[2].length() + 1];
+
+	strncpy_s(const_cast<char*>(m_Author), buffers[1].length() + 1, buffers[1].c_str(), buffers[1].length() + 1);
+	strncpy_s(const_cast<char*>(m_Title), buffers[2].length() + 1, buffers[2].c_str(), buffers[2].length() + 1);
 
 	m_Year = std::atoi(buffers[3].c_str());
 	m_Quantity = std::atoi(buffers[4].c_str());
 }
 
-bool node::operator==(const node &nd){
+bool node::operator==(const node &nd)
+{
 	if (nullptr != m_Author)
 		return m_Author == nd.m_Author;
 
@@ -52,25 +57,34 @@ bool node::operator==(const node &nd){
 	return m_Bookid == nd.m_Bookid;
 }
 
-void node::print()const{
+void node::print()const
+{
 	std::cout << m_Bookid << " " << m_Author <<
 		" " << m_Title << " " << m_Year <<
 		" " << m_Quantity;
+	std::cout.flush();
 }
 
-void tree::addBook(CTreeNode &node){
+void node::cleanStrings()
+{
+	delete[] m_Author;
+	delete[] m_Title;
+}
+
+void tree::addBook(CTreeNode &node)
+{
 	emplace(node);
 }
 
-void tree::deleteBook(unsigned bookid){
+void tree::deleteBook(unsigned bookid)
+{
 	CTreeNode item(nullptr, nullptr, bookid);
 	remove(find(item));
 }
 
 void tree::findByAuthor(
 	utility::Appliable<
-	tree,
-	const char*, 
+	tree, 
 	common::ProtectedBinaryNodeInterface<node>, 
 	std::vector<node*>> &what2call)
 {
@@ -79,10 +93,20 @@ void tree::findByAuthor(
 
 void tree::findByName(
 	utility::Appliable<
-	tree,
-	const char*, 
+	tree, 
 	common::ProtectedBinaryNodeInterface<node>, 
 	std::vector<node*>> &what2call)
 {
 	apply(what2call, getMin());
+}
+
+void tree::print()const
+{
+
+	utility::Appliable < library::CBinTree
+		, common::ProtectedBinaryNodeInterface<library::CTreeNode>,
+		std::vector < library::CTreeNode* >> funcObj(const_cast<CBinTree*>(this), nullptr, utility::Operations::PRINT);
+	
+	apply(funcObj, getMin());
+
 }
