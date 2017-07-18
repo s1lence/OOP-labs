@@ -3,7 +3,7 @@
 * synopsis: definition common parent class for third lab
 * author: R. Neshta
 * written: 08/07/17
-* last modified: 17/07/17
+* last modified: 18/07/17
 ***********************************************/
 
 
@@ -114,10 +114,10 @@ namespace lab3{
 			if (replacer){
 
 				/* direct binding nodes */
-				if (replacer != item->right)
+				if (replacer != item->right) /* recursion safety */
 					replacer->right = item->right;
 
-				if (replacer->left != item->left)
+				if (replacer->left != item->left) /* recursion safety */
 					replacer->left = item->left;
 				
 				replacer->parent->left = replacer->left;

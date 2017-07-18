@@ -3,7 +3,7 @@
 * synopsis: declaration utility for common apply function
 * author: R. Neshta
 * written: 14/07/17
-* last modified: 17/07/17
+* last modified: 18/07/17
 ***********************************************/
 
 #ifndef _UTILITY_H_

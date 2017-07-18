@@ -3,7 +3,7 @@
 * synopsis: definition classes for first variant of third lab
 * author: R. Neshta
 * written: 12/07/17
-* last modified: 17/07/17
+* last modified: 18/07/17
 ***********************************************/
 
 #include"Library.h"
@@ -82,27 +82,32 @@ void tree::deleteBook(unsigned bookid)
 	remove(find(item));
 }
 
-void tree::findByAuthor(
-	utility::Appliable<
-	tree, 
-	common::ProtectedBinaryNodeInterface<node>, 
-	std::vector<node*>> &what2call)
+void tree::findByAuthor(const char* author)
 {
+	CTreeNode stored(author, nullptr, 0);
+	common::ProtectedBinaryNodeInterface<CTreeNode> item(stored, nullptr, nullptr);
+
+	utility::Appliable < library::CBinTree
+		, common::ProtectedBinaryNodeInterface<library::CTreeNode>,
+		std::vector < library::CTreeNode* >> what2call(const_cast<CBinTree*>(this), &item, utility::Operations::FIND_SINGLE);
+
 	apply(what2call, getMin());
 }
 
-void tree::findByName(
-	utility::Appliable<
-	tree, 
-	common::ProtectedBinaryNodeInterface<node>, 
-	std::vector<node*>> &what2call)
+void tree::findByName(const char *name)
 {
+	CTreeNode stored(nullptr, name, 0);
+	common::ProtectedBinaryNodeInterface<CTreeNode> item(stored, nullptr, nullptr);
+
+	utility::Appliable < library::CBinTree
+		, common::ProtectedBinaryNodeInterface<library::CTreeNode>,
+		std::vector < library::CTreeNode* >> what2call(const_cast<CBinTree*>(this), &item, utility::Operations::FIND_SINGLE);
+
 	apply(what2call, getMin());
 }
 
 void tree::print()const
 {
-
 	utility::Appliable < library::CBinTree
 		, common::ProtectedBinaryNodeInterface<library::CTreeNode>,
 		std::vector < library::CTreeNode* >> funcObj(const_cast<CBinTree*>(this), nullptr, utility::Operations::PRINT);

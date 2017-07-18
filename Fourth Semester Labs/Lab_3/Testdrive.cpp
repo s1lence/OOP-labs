@@ -3,7 +3,7 @@
 * synopsis: testing third lab
 * author: R. Neshta
 * written: 17/07/17
-* last modified: 17/07/17
+* last modified: 18/07/17
 ***********************************************/
 
 #include<iostream>

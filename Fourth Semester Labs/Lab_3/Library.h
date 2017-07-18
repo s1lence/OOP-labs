@@ -3,7 +3,7 @@
 * synopsis: declaration classes for first variant of third lab
 * author: R. Neshta
 * written: 12/07/17
-* last modified: 17/07/17
+* last modified: 18/07/17
 ***********************************************/
 
 
@@ -30,7 +30,7 @@ namespace lab3{
 			// special ctor for search nodes
 			CTreeNode(const char * author, const char *title, int bookid)
 				: m_Bookid(bookid), m_Year(0),
-				m_Quantity(0), m_Author(nullptr),
+				m_Quantity(0), m_Author(author),
 				m_Title(title){}
 
 			// by default initialisation made with *.csv file
@@ -76,17 +76,9 @@ namespace lab3{
 
 			void deleteBook(unsigned bookid);
 
-			void findByAuthor(
-				utility::Appliable<
-				CBinTree, 
-				common::ProtectedBinaryNodeInterface<CTreeNode>, 
-				std::vector<CTreeNode*>> &what2call);
+			void findByAuthor(const char* author);
 
-			void findByName(
-				utility::Appliable<
-				CBinTree, 
-				common::ProtectedBinaryNodeInterface<CTreeNode>, 
-				std::vector<CTreeNode*>> &what2call);
+			void findByName(const char *name);
 
 			void print()const;
 
