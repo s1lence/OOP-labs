@@ -39,7 +39,7 @@ namespace lab3{
 			case Operations::PRINT_N_DELETE:
 
 				item.data.print();
-				creator->remove(&item);
+				results.push_back(&item.data);
 				break;
 
 			case Operations::PRINT:
@@ -49,13 +49,16 @@ namespace lab3{
 			}
 		}
 
-		template<class Comparable>
-		int compare(const void *node1, const void *node2){
+		template<class Self, class Comparable, class Container>
+		void Appliable<Self, Comparable, Container>::eraseContainer(){
 
-			const Comparable * data1 = static_cast<const Comparable*>(node1);
-			const Comparable * data2 = static_cast<const Comparable*>(node2);
+			if (option != Operations::PRINT_N_DELETE)
+				return;
 
-			return data1->cCompare(*data2);
+			for (auto &i : results){
+				creator->remove(creator->find(*i));
+			}
+
 		}
 
 	}

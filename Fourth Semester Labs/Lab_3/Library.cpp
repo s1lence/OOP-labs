@@ -110,3 +110,13 @@ void tree::print()const
 	apply(funcObj, getMin());
 
 }
+
+
+void tree::apply2All(
+	utility::Appliable <
+	CBinTree,
+	common::ProtectedBinaryNodeInterface<CTreeNode>,
+	std::vector < CTreeNode* >> &callable)
+{
+	apply(callable, getMin());
+}

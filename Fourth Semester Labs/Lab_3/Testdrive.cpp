@@ -21,7 +21,13 @@ int main(){
 
 	
 	std::cout << "Library has:" << std::endl;
-	t.print();
+	// t.print();
+
+	utility::Appliable < library::CBinTree,
+		common::ProtectedBinaryNodeInterface<library::CTreeNode>,
+		std::vector < library::CTreeNode* >> callable(&t, nullptr, utility::Operations::PRINT_N_DELETE);
+
+	t.apply2All(callable);
 
 	return 0;
 }

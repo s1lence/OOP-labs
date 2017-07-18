@@ -48,6 +48,8 @@ namespace lab3{
 
 			void operator()(Comparable &item);
 
+			void eraseContainer();
+
 		private:
 
 			Comparable *data; // data which will be compared
@@ -55,9 +57,6 @@ namespace lab3{
 			Operations option; // operation performed
 			Self *creator; // pointer to object derived from ProtectedBinaryTreeInterface
 		};
-
-		template<class Comparable>
-		int compare(const void *node1, const void *node2);
 
 	}
 

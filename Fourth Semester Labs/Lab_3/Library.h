@@ -52,8 +52,6 @@ namespace lab3{
 
 			void print()const;
 
-			int cCompare(const CTreeNode& node)const{ return m_Bookid - node.m_Bookid; }
-
 			void cleanStrings();
 
 		private:
@@ -91,6 +89,12 @@ namespace lab3{
 				std::vector<CTreeNode*>> &what2call);
 
 			void print()const;
+
+			void apply2All(
+				utility::Appliable <
+				CBinTree,
+				common::ProtectedBinaryNodeInterface<CTreeNode>,
+				std::vector < CTreeNode* >>& );
 
 			friend utility::Appliable<CBinTree, common::ProtectedBinaryNodeInterface<CTreeNode>, std::vector<CTreeNode*>>;
 

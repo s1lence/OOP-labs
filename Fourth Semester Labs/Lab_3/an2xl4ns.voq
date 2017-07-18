@@ -1,0 +1,285 @@
+/************************************************
+* file: "Common.cpp"
+* synopsis: definition common parent class for third lab
+* author: R. Neshta
+* written: 08/07/17
+* last modified: 12/07/17
+***********************************************/
+
+#ifndef _COMMON_H_
+#include"Common.h"
+#endif
+
+#ifndef _REALISATION_
+#define _REALISATION_
+
+namespace lab3{
+
+
+	namespace utility{
+
+		template<class Self, class Initialiser, class Comparable, class Container>
+		void Appliable<Self, Initialiser, Comparable, Container>::operator()(Comparable& item){
+
+			switch (option){
+
+			case Operations::FIND_SINGLE:
+
+				if (item == *data){
+					results.push_back(&item);
+					callable = false;
+				}
+				break;
+
+			case Operations::FIND_MULTIPLE:
+
+				if (item == *data)
+					results.push_back(&item);
+				break;
+
+			case Operations::PRINT_N_DELETE:
+
+				item.print();
+				creator->remove(&item);
+				break;
+
+			case Operations::PRINT:
+
+				item.print();
+				break;
+			}
+		}
+
+		template<class Comparable>
+		int compare(const Comparable *node1, const Comparable *node2){
+			
+			return (*node1) < (*node2) ? -1 : 1;
+		}
+
+	}
+
+	namespace common{
+
+		template<class StoredData>
+		ProtectedBinaryTreeInterface<StoredData>::ProtectedBinaryTreeInterface(
+			const char *csvFileName)
+		{
+
+			std::ifstream input(csvFileName, std::ios_base::in);
+			std::vector<StoredData> objects;
+			char readed[500];
+
+			while (!std::ios_base::eofbit){
+				input.getline(readed, 500);
+				objects.push_back(StoredData(readed));
+			}
+
+			size_t begins=0, size = objects.size();
+			std::qsort(&objects, objects.size(), sizeof(StoredData),&utility::compare);
+
+			root = buildTree(objects, begins, size);
+			input.close();
+		}
+
+		template<class StoredData>
+		ProtectedBinaryTreeInterface<StoredData>::~ProtectedBinaryTreeInterface()
+		{
+
+			erase(root);
+
+		}
+
+		template<class StoredData>
+		void ProtectedBinaryTreeInterface<StoredData>::emplace(
+			const StoredData& item)
+		{
+			ProtectedBinaryNodeInterface<StoredData> *previous, *current = root;
+
+			while (current){
+				previous = current;
+				if (current->data < item)
+					current = current->right;
+				else
+					current = current->left;
+			}
+
+			if (previous->data < item)
+				previous->right = new ProtectedBinaryNodeInterface<StoredData>(item, nullptr, nullptr, previous);
+			else
+				previous->left = new ProtectedBinaryNodeInterface<StoredData>(item, nullptr, nullptr, previous);
+		}
+
+		template<class StoredData>
+		template<class Self, class Initialiser, class Comparable, class Container>
+		void ProtectedBinaryTreeInterface<StoredData>::apply(
+			::lab3::utility::Appliable<Self, Initialiser, Comparable, Container> &obj2call,
+			ProtectedBinaryNodeInterface<StoredData> *first,
+			ProtectedBinaryNodeInterface<StoredData> *last)
+		{
+			ProtectedBinaryNodeInterface<StoredData> *current = first;
+
+			while (current != last){
+
+				obj2call(*current);
+				current = next(*current);
+
+			}
+		}
+
+		template<class StoredData>
+		void ProtectedBinaryTreeInterface<StoredData>::remove(
+			ProtectedBinaryNodeInterface<StoredData> &item)
+		{
+
+			if (item->right){
+
+				ProtectedBinaryNodeInterface<StoredData> * 
+					willRemoved = min(item->right);
+
+				item->data = willRemoved->data;
+
+				willRemoved->parent->left = nullptr;
+				delete willRemoved;
+
+			}
+			else{
+
+				if (item->left)
+					item->left->parent = item->parent;
+
+				if (item->parent){
+					if (item->parent->left == item)
+						item->parent->left = item->left;
+					else
+						item->parent->right = item->left;
+				}
+
+				delete item;
+			}
+		}
+
+		template<class StoredData>
+		void 
+			ProtectedBinaryTreeInterface<StoredData>::erase(
+			ProtectedBinaryNodeInterface<StoredData> *subtree)
+		{
+
+			if (nullptr == subtree)
+				return;
+
+			erase(subtree->left);
+			erase(subtree->right);
+
+			delete subtree;
+		}
+
+		template<class StoredData>
+		ProtectedBinaryNodeInterface<StoredData>* 
+			ProtectedBinaryTreeInterface<StoredData>::next(
+			ProtectedBinaryNodeInterface<StoredData> &current)
+		{
+			ProtectedBinaryNodeInterface<StoredData> *next;
+
+			if (nullptr == current.right){
+				next = &current;
+
+				while (next->parent && next->parent->left != next)
+					next = next->parent;
+			}
+			else{
+				next = current.right;
+
+				while (next->left)
+					next = next->left;
+			}
+
+			return next;
+		}
+
+		template<class StoredData>
+		ProtectedBinaryNodeInterface<StoredData>* 
+			ProtectedBinaryTreeInterface<StoredData>::prev(
+			ProtectedBinaryNodeInterface<StoredData> &current)
+		{
+			ProtectedBinaryNodeInterface<StoredData> *prev;
+
+			if (nullptr == current.left){
+				prev = current;
+
+				while (prev->parent && prev->parent->right != prev)
+					prev = prev->parent;
+			}
+			else{
+				prev = current->left;
+
+				while (prev->right)
+					prev = prev->right;
+			}
+
+			return prev;
+		}
+
+		template<class StoredData>
+		ProtectedBinaryNodeInterface<StoredData>* 
+			ProtectedBinaryTreeInterface<StoredData>::min(
+			ProtectedBinaryNodeInterface<StoredData> &root)
+		{
+			ProtectedBinaryNodeInterface<StoredData> *min = &root;
+
+			while (min->left)
+				min = min->left;
+
+			return min;
+		}
+
+		template<class StoredData>
+		ProtectedBinaryNodeInterface<StoredData>* 
+			ProtectedBinaryTreeInterface<StoredData>::max(
+			ProtectedBinaryNodeInterface<StoredData> &root)
+		{
+			ProtectedBinaryNodeInterface<StoredData> *max = root;
+
+			while (max->right)
+				max = max->right;
+
+			return max;
+		}
+
+		template<class StoredData>
+		std::size_t ProtectedBinaryTreeInterface<StoredData>::depth(
+			ProtectedBinaryNodeInterface<StoredData> &root,
+			std::size_t current)
+		{
+
+			std::size_t left = depth(root->left, current + 1);
+			std::size_t right = depth(root->right, current + 1);
+
+			return left > right ? left : right;
+		}
+
+		template<class StoredData>
+		ProtectedBinaryNodeInterface<StoredData> * 
+			ProtectedBinaryTreeInterface<StoredData>::buildTree(
+			std::vector<StoredData> &objects, 
+			std::size_t &leftBound, 
+			std::size_t &rightBound)
+		{
+
+			std::size_t middle = (rightBound - leftBound) / 2;
+			ProtectedBinaryNodeInterface<StoredData> * 
+				root = new ProtectedBinaryNodeInterface<StoredData>(objects[middle + leftBound], nullptr, nullptr, nullptr);
+
+			root->left = buildTree(objects, leftBound, --middle);
+			root->left->parent = root;
+
+			root->right = buildTree(objects, ++++middle, rightBound);
+			root->right->parent = root;
+
+			return root;
+		}
+
+	}
+	
+}
+
+#endif /*_REALISATION_*/
