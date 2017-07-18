@@ -21,13 +21,21 @@ int main(){
 
 	
 	std::cout << "Library has:" << std::endl;
-	// t.print();
+	
+	library::CTreeNode book("10;Stewen King;The Gunslinger;2000;10");
+	t.addBook(book);
+	t.deleteBook(5);
+	t.print();
+
+	/*
+	std::vector<library::CTreeNode*> trash;
 
 	utility::Appliable < library::CBinTree,
 		common::ProtectedBinaryNodeInterface<library::CTreeNode>,
-		std::vector < library::CTreeNode* >> callable(&t, nullptr, utility::Operations::PRINT_N_DELETE);
+		std::vector < library::CTreeNode* >> callable(&t, nullptr, utility::Operations::PRINT_N_DELETE, &trash);
 
-	t.apply2All(callable);
+	t.apply2All(callable); // direct call from client code
+	*/
 
 	return 0;
 }

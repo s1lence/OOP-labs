@@ -27,6 +27,11 @@ namespace lab3{
 			std::vector<StoredData> objects;
 			char readed[500];
 
+			if (input.eof()){ /* skip if sth goes wrong */
+				std::cerr << "Error opening file. Program terminated";
+				exit(1);
+			}
+
 			/* reading line and creating vector of objects */
 			while (!input.eof()){
 				input.getline(readed, 500);
@@ -283,11 +288,11 @@ namespace lab3{
 		template<class StoredData>
 		std::size_t ProtectedBinaryTreeInterface<StoredData>::depth(
 			ProtectedBinaryNodeInterface<StoredData> &root,
-			std::size_t current)
+			std::size_t current)const
 		{
 			/* recursive descent calculates all tree depths */
-			std::size_t left = depth(root->left, current + 1);
-			std::size_t right = depth(root->right, current + 1);
+			std::size_t left = depth(*root.left, current + 1);
+			std::size_t right = depth(*root.right, current + 1);
 
 			/* max depth returns */
 			return left > right ? left : right;

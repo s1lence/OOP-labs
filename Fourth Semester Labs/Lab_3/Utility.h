@@ -39,10 +39,11 @@ namespace lab3{
 			Appliable() = delete;
 			Appliable(const Appliable&) = delete;
 
-			Appliable(Self * whoCalls, Comparable *item2compare, Operations whatToDo) :
+			Appliable(Self * whoCalls, Comparable *item2compare, Operations whatToDo, Container *storage) :
 				data(item2compare),
 				option(whatToDo),
-				creator(whoCalls){}
+				creator(whoCalls),
+				results(storage){}
 
 			~Appliable(){ delete data; }
 
@@ -53,7 +54,7 @@ namespace lab3{
 		private:
 
 			Comparable *data; // data which will be compared
-			Container results; // container for storing seeked elements
+			Container *results; // container for storing seeked elements
 			Operations option; // operation performed
 			Self *creator; // pointer to object derived from ProtectedBinaryTreeInterface
 		};

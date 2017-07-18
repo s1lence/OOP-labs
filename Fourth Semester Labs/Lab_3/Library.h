@@ -76,9 +76,9 @@ namespace lab3{
 
 			void deleteBook(unsigned bookid);
 
-			void findByAuthor(const char* author);
+			void findByAuthor(const char* author, std::vector<library::CTreeNode*> *p2vector);
 
-			void findByName(const char *name);
+			void findByName(const char *name, std::vector<library::CTreeNode*> *p2vector);
 
 			void print()const;
 
@@ -90,6 +90,9 @@ namespace lab3{
 
 			friend utility::Appliable<CBinTree, common::ProtectedBinaryNodeInterface<CTreeNode>, std::vector<CTreeNode*>>;
 
+			std::size_t height()const{ return heigth(); }
+
+			std::size_t getDepth(common::ProtectedBinaryNodeInterface<CTreeNode>&nd)const{ return depth(nd); }
 		};
 
 	}

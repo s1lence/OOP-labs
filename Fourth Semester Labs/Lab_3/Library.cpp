@@ -48,10 +48,10 @@ node::CTreeNode(const char *csvData)
 
 bool node::operator==(const node &nd)
 {
-	if (nullptr != m_Author)
+	if (nullptr != nd.m_Author) /* if we searching not by author then pass it */
 		return m_Author == nd.m_Author;
 
-	if (nullptr != m_Title)
+	if (nullptr != nd.m_Title) /* and if not by title - go further */
 		return m_Title == nd.m_Title;
 
 	return m_Bookid == nd.m_Bookid;
@@ -62,7 +62,7 @@ void node::print()const
 	std::cout << "Book id: " << m_Bookid << std::endl << "Author: " << m_Author << std::endl <<
 		"Title: " << m_Title << std::endl << "Year: " << m_Year << std::endl <<
 		"Quantity: " << m_Quantity << std::endl << std::endl;
-	std::cout.flush();
+	std::cout.flush(); /* instant print */
 }
 
 void node::cleanStrings()
@@ -82,38 +82,40 @@ void tree::deleteBook(unsigned bookid)
 	remove(find(item));
 }
 
-void tree::findByAuthor(const char* author)
+void tree::findByAuthor(const char* author,std::vector<library::CTreeNode*> *p2vector)
 {
-	CTreeNode stored(author, nullptr, 0);
+	CTreeNode stored(author, nullptr, 0); /* binary node interface takes StoredDataType object in ctor */
 	common::ProtectedBinaryNodeInterface<CTreeNode> item(stored, nullptr, nullptr);
 
+	/* appliable takes binary node interface object in ctor */
 	utility::Appliable < library::CBinTree
 		, common::ProtectedBinaryNodeInterface<library::CTreeNode>,
-		std::vector < library::CTreeNode* >> what2call(const_cast<CBinTree*>(this), &item, utility::Operations::FIND_SINGLE);
+		std::vector < library::CTreeNode* >> what2call(const_cast<CBinTree*>(this), &item, utility::Operations::FIND_SINGLE, p2vector);
 
-	apply(what2call, getMin());
+	apply(what2call, getMin()); /* applies to all */
 }
 
-void tree::findByName(const char *name)
+void tree::findByName(const char *name, std::vector<library::CTreeNode*> *p2vector)
 {
-	CTreeNode stored(nullptr, name, 0);
+	CTreeNode stored(nullptr, name, 0); /* binary node interface takes StoredDataType object in ctor */
 	common::ProtectedBinaryNodeInterface<CTreeNode> item(stored, nullptr, nullptr);
 
+	/* appliable takes binary node interface object in ctor */
 	utility::Appliable < library::CBinTree
 		, common::ProtectedBinaryNodeInterface<library::CTreeNode>,
-		std::vector < library::CTreeNode* >> what2call(const_cast<CBinTree*>(this), &item, utility::Operations::FIND_SINGLE);
+		std::vector < library::CTreeNode* >> what2call(const_cast<CBinTree*>(this), &item, utility::Operations::FIND_SINGLE, p2vector);
 
-	apply(what2call, getMin());
+	apply(what2call, getMin()); /* applies to all */
 }
 
 void tree::print()const
 {
+	/* simlple print doesn't require any node object because doesn't perform any comparisons */
 	utility::Appliable < library::CBinTree
 		, common::ProtectedBinaryNodeInterface<library::CTreeNode>,
-		std::vector < library::CTreeNode* >> funcObj(const_cast<CBinTree*>(this), nullptr, utility::Operations::PRINT);
+		std::vector < library::CTreeNode* >> funcObj(const_cast<CBinTree*>(this), nullptr, utility::Operations::PRINT, nullptr);
 	
 	apply(funcObj, getMin());
-
 }
 
 

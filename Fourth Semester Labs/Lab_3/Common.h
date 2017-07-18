@@ -98,8 +98,8 @@ namespace lab3{
 			_bin_node* getMin()const{ return min(*root); } // returns pointer to minimum node
 			_bin_node* getMax()const{ return max(*root); } // returns pointer to maximum node
 
-			std::size_t depth(_bin_node &root, std::size_t current = 0); // returns depth of given tree
-			std::size_t heigth(void){ return depth(root); } // returns tree height
+			std::size_t depth(_bin_node &root, std::size_t current = 0)const; // returns depth of given tree
+			std::size_t heigth(void)const{ return depth(*root); } // returns tree height
 			
 			_bin_node * buildTree(std::vector<StoredData>&, int, int); // requires sorted vector of objects
 
