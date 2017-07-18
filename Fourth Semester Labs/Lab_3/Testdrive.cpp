@@ -17,6 +17,8 @@ using namespace lab3;
 
 int main(){
 
+	/* library tests */
+	/*
 	library::CBinTree t("../Lab_3/library.csv");
 
 	
@@ -25,7 +27,12 @@ int main(){
 	library::CTreeNode book("10;Stewen King;The Gunslinger;2000;10");
 	t.addBook(book);
 
-	// t.deleteBook(5);
+	t.deleteBook(5);
+
+	library::CTreeNode book2("5;Stewen King;The Shining;2012;7");
+	t.addBook(book2);
+
+	// 
 	// t.print();
 
 	// std::cout << t.height();
@@ -33,10 +40,12 @@ int main(){
 	t.printBackward();
 
 
-/*
+	/*
 	std::vector<library::CTreeNode*> v;
-	t.findByName("The Chronicles of Amber", &v);
-	v[0]->print();*/
+	t.findByAuthor("Stewen King", &v);
+	for (auto &i : v)
+		i->print();
+
 
 	/*
 	std::vector<library::CTreeNode*> trash;
@@ -48,6 +57,9 @@ int main(){
 	t.apply2All(callable); // direct call from client code
 	std::cout << t.isEmpty() << std::endl;
 	*/
+	
+
+
 
 	return 0;
 }
