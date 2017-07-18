@@ -122,4 +122,4 @@ namespace lab3{
 #include"Common.cpp"
 #endif /*_COMMON_REALISATION_*/
 
-#endif // !_COMMON_H_
+#endif /* _COMMON_H_ */
