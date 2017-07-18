@@ -237,14 +237,16 @@ namespace lab3{
 			ProtectedBinaryNodeInterface<StoredData> *prev;
 
 			if (nullptr == current.left){ /* taking the smallest */
-				prev = current;
+				prev = &current;
 
 				/* the next will be the parent of the first element which is the right of his own parent(next) */
 				while (prev->parent && prev->parent->right != prev)
 					prev = prev->parent;
+
+				return prev->parent;
 			}
 			else{ /* searching the largest of the left subtree */
-				prev = current->left;
+				prev = current.left;
 
 				while (prev->right)
 					prev = prev->right;
@@ -290,9 +292,14 @@ namespace lab3{
 			ProtectedBinaryNodeInterface<StoredData> &root,
 			std::size_t current)const
 		{
+			std::size_t left = current, right = current;
+
 			/* recursive descent calculates all tree depths */
-			std::size_t left = depth(*root.left, current + 1);
-			std::size_t right = depth(*root.right, current + 1);
+			if (nullptr != root.left)
+				left = depth(*root.left, current + 1);
+
+			if (nullptr != root.right)
+				right = depth(*root.right, current + 1);
 
 			/* max depth returns */
 			return left > right ? left : right;

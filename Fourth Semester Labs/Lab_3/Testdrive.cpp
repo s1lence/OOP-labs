@@ -24,8 +24,19 @@ int main(){
 	
 	library::CTreeNode book("10;Stewen King;The Gunslinger;2000;10");
 	t.addBook(book);
-	t.deleteBook(5);
-	t.print();
+
+	// t.deleteBook(5);
+	// t.print();
+
+	// std::cout << t.height();
+
+	t.printBackward();
+
+
+/*
+	std::vector<library::CTreeNode*> v;
+	t.findByName("The Chronicles of Amber", &v);
+	v[0]->print();*/
 
 	/*
 	std::vector<library::CTreeNode*> trash;
@@ -35,6 +46,7 @@ int main(){
 		std::vector < library::CTreeNode* >> callable(&t, nullptr, utility::Operations::PRINT_N_DELETE, &trash);
 
 	t.apply2All(callable); // direct call from client code
+	std::cout << t.isEmpty() << std::endl;
 	*/
 
 	return 0;

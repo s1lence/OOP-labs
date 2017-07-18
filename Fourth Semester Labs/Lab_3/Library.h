@@ -93,6 +93,10 @@ namespace lab3{
 			std::size_t height()const{ return heigth(); }
 
 			std::size_t getDepth(common::ProtectedBinaryNodeInterface<CTreeNode>&nd)const{ return depth(nd); }
+
+			void printBackward()const;
+
+			bool isEmpty()const{ return empty(); }
 		};
 
 	}

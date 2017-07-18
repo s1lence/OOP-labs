@@ -39,13 +39,14 @@ namespace lab3{
 			Appliable() = delete;
 			Appliable(const Appliable&) = delete;
 
+			/* *item2compare must be created and handle it's destruction outside */
 			Appliable(Self * whoCalls, Comparable *item2compare, Operations whatToDo, Container *storage) :
 				data(item2compare),
 				option(whatToDo),
 				creator(whoCalls),
 				results(storage){}
 
-			~Appliable(){ delete data; }
+			~Appliable(){}
 
 			void operator()(Comparable &item);
 

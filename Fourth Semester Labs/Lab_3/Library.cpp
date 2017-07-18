@@ -48,11 +48,11 @@ node::CTreeNode(const char *csvData)
 
 bool node::operator==(const node &nd)
 {
-	if (nullptr != nd.m_Author) /* if we searching not by author then pass it */
-		return m_Author == nd.m_Author;
+	if (nullptr != m_Author && nullptr != nd.m_Author) /* if we searching not by author then pass it */
+		return 0 == strcmp(m_Author, nd.m_Author);
 
-	if (nullptr != nd.m_Title) /* and if not by title - go further */
-		return m_Title == nd.m_Title;
+	if (nullptr != m_Title && nullptr != nd.m_Title) /* and if not by title - go further */
+		return 0 == strcmp(m_Title, nd.m_Title);
 
 	return m_Bookid == nd.m_Bookid;
 }
@@ -126,4 +126,14 @@ void tree::apply2All(
 	std::vector < CTreeNode* >> &callable)
 {
 	apply(callable, getMin());
+}
+
+void tree::printBackward()const
+{
+	common::ProtectedBinaryNodeInterface<CTreeNode> *p = getMax();
+
+	while (p){
+		p->data.print();
+		p = prev(*p);
+	}
 }
