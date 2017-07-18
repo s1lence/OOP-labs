@@ -3,7 +3,7 @@
 * synopsis: declaration utility for common apply function
 * author: R. Neshta
 * written: 14/07/17
-* last modified: 18/07/17
+* last modified: 19/07/17
 ***********************************************/
 
 #ifndef _UTILITY_H_
@@ -14,7 +14,7 @@ namespace lab3{
 	namespace utility{
 
 		// describes what operations allowed in Appliable class
-		enum class Operations{ FIND_SINGLE, FIND_MULTIPLE, PRINT_N_DELETE, PRINT };
+		enum class Operations{ FIND_SINGLE, FIND_MULTIPLE, PRINT_N_DELETE, PRINT_N_DELETE_ALL, PRINT };
 
 		template<class Self, class Comparable, class Container>
 		class Appliable{
@@ -51,6 +51,8 @@ namespace lab3{
 			void operator()(Comparable &item);
 
 			void eraseContainer();
+
+			void setOperationTo(Operations op){ option = op; }
 
 		private:
 

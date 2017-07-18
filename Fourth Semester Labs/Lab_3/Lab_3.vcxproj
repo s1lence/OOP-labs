@@ -87,14 +87,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Common.cpp" />
+    <ClCompile Include="Dictionary.cpp" />
     <ClCompile Include="Library.cpp" />
     <ClCompile Include="Station.cpp" />
     <ClCompile Include="Testdrive.cpp" />
+    <ClCompile Include="Tickets.cpp" />
     <ClCompile Include="Utility.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="dictionary.csv" />
     <None Include="library.csv" />
     <None Include="station.csv" />
+    <None Include="tickets.csv" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

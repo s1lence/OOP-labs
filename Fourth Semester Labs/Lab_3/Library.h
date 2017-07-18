@@ -3,7 +3,7 @@
 * synopsis: declaration classes for first variant of third lab
 * author: R. Neshta
 * written: 12/07/17
-* last modified: 18/07/17
+* last modified: 19/07/17
 ***********************************************/
 
 
@@ -72,6 +72,7 @@ namespace lab3{
 
 			CBinTree(const char *csvFileName) :ProtectedBinaryTreeInterface(csvFileName){}
 
+			/* required functions */
 			void addBook(CTreeNode&);
 
 			void deleteBook(unsigned bookid);
@@ -80,6 +81,7 @@ namespace lab3{
 
 			void findByName(const char *name, std::vector<library::CTreeNode*> *p2vector);
 
+			/* custom functions */
 			void print()const;
 
 			void apply2All(

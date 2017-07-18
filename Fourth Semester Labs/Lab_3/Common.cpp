@@ -122,7 +122,7 @@ namespace lab3{
 				if (replacer != item->right) /* recursion safety */
 					replacer->right = item->right;
 
-				if (replacer->left != item->left) /* recursion safety */
+				if (replacer != item->left) /* recursion safety */
 					replacer->left = item->left;
 				
 				replacer->parent->left = replacer->left;
