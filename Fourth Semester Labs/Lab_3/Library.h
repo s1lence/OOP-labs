@@ -88,8 +88,6 @@ namespace lab3{
 				common::ProtectedBinaryNodeInterface<CTreeNode>,
 				std::vector < CTreeNode* >>& );
 
-			friend utility::Appliable<CBinTree, common::ProtectedBinaryNodeInterface<CTreeNode>, std::vector<CTreeNode*>>;
-
 			std::size_t height()const{ return heigth(); }
 
 			std::size_t getDepth(common::ProtectedBinaryNodeInterface<CTreeNode>&nd)const{ return depth(nd); }
@@ -97,6 +95,9 @@ namespace lab3{
 			void printBackward()const;
 
 			bool isEmpty()const{ return empty(); }
+
+			friend utility::Appliable<CBinTree, common::ProtectedBinaryNodeInterface<CTreeNode>, std::vector<CTreeNode*>>;
+
 		};
 
 	}

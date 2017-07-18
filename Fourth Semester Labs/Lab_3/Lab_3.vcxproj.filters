@@ -47,8 +47,12 @@
     <ClCompile Include="Testdrive.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Station.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="library.csv" />
+    <None Include="station.csv" />
   </ItemGroup>
 </Project>

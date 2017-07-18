@@ -9,9 +9,27 @@
 #ifndef _DICTIONARY_H_
 #define _DICTIONARY_H_
 
+#include"Common.h"
+#include"Utility.h"
+
 namespace lab3{
 
 	namespace dictionary{
+
+		class CTreeNode{
+
+		private:
+
+			unsigned m_Page;
+			const char* m_EngWord;
+			const char* m_ItaWord;
+
+		};
+
+		class CBinTree : common::ProtectedBinaryTreeInterface<CTreeNode>{
+		public:
+
+		};
 
 	}
 

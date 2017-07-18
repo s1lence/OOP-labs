@@ -88,11 +88,13 @@
   <ItemGroup>
     <ClCompile Include="Common.cpp" />
     <ClCompile Include="Library.cpp" />
+    <ClCompile Include="Station.cpp" />
     <ClCompile Include="Testdrive.cpp" />
     <ClCompile Include="Utility.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="library.csv" />
+    <None Include="station.csv" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

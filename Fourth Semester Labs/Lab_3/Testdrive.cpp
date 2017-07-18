@@ -12,6 +12,7 @@ using std::cout;
 using std::endl;
 
 #include"Library.h"
+#include"Station.h"
 
 using namespace lab3;
 
@@ -58,7 +59,18 @@ int main(){
 	std::cout << t.isEmpty() << std::endl;
 	*/
 	
+	/* station tests */
 
+	station::CBinTree st("../Lab_3/station.csv");
+
+	std::vector<station::CTreeNode*> v;
+
+	// st.print();
+
+	st.getStationInfo("Vydubychi", &v);
+
+	for (auto &i : v)
+		i->print();
 
 
 	return 0;
