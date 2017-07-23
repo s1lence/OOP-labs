@@ -79,10 +79,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="carray.h" />
+    <ClInclude Include="cstring.h" />
     <ClInclude Include="multistring.h" />
+    <ClInclude Include="stringlist.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="carray.cpp" />
+    <ClCompile Include="cstring.cpp" />
     <ClCompile Include="multistring.cpp" />
     <ClCompile Include="Test.cpp" />
   </ItemGroup>

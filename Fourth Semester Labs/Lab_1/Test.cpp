@@ -16,8 +16,10 @@
  
 #include <iostream>
 
-#include "cArray.h"
 #include "multistring.h"
+#include "cstring.h"
+#include "cArray.h"
+#include "stringlist.h"
 
 using namespace lab1;
 using std::cout;
@@ -69,6 +71,33 @@ int main(){
 	/*
 	 * c string tests
 	 */
+
+	cstring::cString base("a b c d"), s1, s2, s3, copy = base;
+	copy.Print();
+
+	//s1 = base;
+	//s1.Print();
+
+	//s2 += s1;
+	//s2.Print();
+
+	s2 = "text";
+	s3 = base + s2;
+	s3.Print();
+
+	s1.SetAt(0, 'R');
+	std::cout << s1[0] << std::endl;
+	std::cout << s1.Find('R') << std::endl;
+
+	s3.Print();
+	std::cout << "'c d' string starts at "<< s3.Find("c d") << std::endl;
+
+	std::cout << s3.Compare(base) << std::endl;
+
+	s3.Print();
+	s3.Mid(2, 5).Print();
+	s3.Left(5).Print();
+	s3.Right(5).Print();
 
 	/*
 	 *	c array tests
