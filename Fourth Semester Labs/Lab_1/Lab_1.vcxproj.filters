@@ -18,12 +18,18 @@
     <ClInclude Include="carray.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="multistring.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="carray.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="multistring.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

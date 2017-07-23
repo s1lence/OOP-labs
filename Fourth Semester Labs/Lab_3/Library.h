@@ -22,7 +22,7 @@ namespace lab3{
 	namespace library{
 		
 		class CTreeNode{
-		
+			
 		public:
 			// empty node is not allowed
 			CTreeNode() = delete;
@@ -47,7 +47,7 @@ namespace lab3{
 			// less node has less book id
 			bool operator<(const CTreeNode& nd)const{ return m_Bookid < nd.m_Bookid; }
 
-			// equality determines by specific pointers analyse
+			// equality determines by specific pointers analyze
 			bool operator==(const CTreeNode& nd);
 
 			void print()const;

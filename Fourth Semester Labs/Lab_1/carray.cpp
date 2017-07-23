@@ -1,14 +1,23 @@
-/***
-* file:"carray.cpp"
-* synopsis: carray class implementation
-* author: R. Neshta
-* written:01/06/17
-* last modified: 01/06/17
-****/
+/*
+ * `file` 			carray.cpp
+ * `written` 		01/06/17
+ * `last modified`	01/06/17
+ *
+ *	Author:			R. Neshta
+ *	Contact: 		Ruslan.Neshta@gmail.com
+ *
+ *	`synopsis` 		c array class implementation
+ *
+ *	Description: 	c array class is similar to vector but holds int values
+ *
+ *	`note`			re factored July 23 2017 7:54:13
+ */
+ 
+ 
 
 #include "cArray.h"
 
-using namespace lab1;
+using namespace lab1::carray;
 
 
 //Attributes
@@ -61,7 +70,7 @@ void cArray::FreeExtra(){
 void cArray::Add(int value){
 	
 	if (counter == size)
-		SetSize(size + GROWBY);
+		SetSize(size + growBy);
 	
 	buf[counter++] = value;
 }
@@ -75,8 +84,8 @@ void cArray::Append(cArray *Arr){
 	int k = Arr->counter;
 	if (size - counter < k){
 	
-		if (k < GROWBY)
-			k = GROWBY;
+		if (k < growBy)
+			k = growBy;
 		
 		SetSize(size + k);
 	}
