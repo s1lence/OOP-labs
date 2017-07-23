@@ -1,7 +1,7 @@
 /*
  * `file` 			Test.cpp
  * `written` 		01/06/17
- * `last modified`	July 23 2017 7:51:30
+ * `last modified`	July 23 2017 19:44:07
  *
  *	Author:			R. Neshta
  *	Contact: 		Ruslan.Neshta@gmail.com
@@ -145,9 +145,58 @@ int main(){
 	/*
 	 *	string list tests
 	 */
+	/*
+	stringlist::StringList l1, l2, l3;			 // ctor 
 
+	//std::cout << l1.IsEmpty() << std::endl;	// isempty 
+
+	l1.AddHead("head strings");
+	l2.AddTail(&l1);
+	//l2.Printnode(l1.GetHead());				 // add head/tail N1 & N2,print node,get head/tail 
+	//l2.Printnode(l2.GetTail());
+
+	//l2.RemoveAll();							 // remove & dtor 
+	//std::cout << l2.IsEmpty() << std::endl;
+
+
+	////l1.RemoveHead();							//remove head/tail
+	//l1.RemoveTail();
+	//std::cout << l1.IsEmpty() << std::endl;
+
+	//std::cout << l1.Getsize() << std::endl;		 // get size 
+
+	l1.AddTail("\ntail string");
+	//l2.AppendExclusively(&l1);						 // append exclusively & find within it 
+
+	//std::cout << l2.Getsize() << std::endl << l2.GetAt(0) << l2.GetAt(1) << std::endl;
+
+	//l2.Splice(l2.GetHeadPosition(), &l1, l1.GetHead(), l1.GetTail());
+	//std::cout << l2.Getsize() << std::endl;
+
+	//l2.Unique();
+	//std::cout << l2.Getsize() << std::endl;				 // splice, unique, get head position, find/find index 
+
+
+	//l2.RemoveAt(0);
+	//std::cout << l2.Getsize() << std::endl;					 // remove at 
+
+	//l2.SetAt("changed", 0);
+	//l2.Printnode(l2.GetHeadPosition());							 // set at 
+
+	l1.InsertAfter("test", 1);									 // insert before/after 
+	l1.InsertBefore("before", 2);
+	bool f = true;
+
+	for (auto i = l1.GetHeadPosition(); i->next != nullptr; i = l1.GetNext()){
+		std::cout << i->str << std::endl;
+
+		//if (f && i->prev){											 // get next/prev 
+		//	f = !f;
+		//	std::cout << "test previous:" << l1.GetPrev()->str << std::endl;
+		//}
+	}
+	*/
 	
-
 	return 0;
 
 }

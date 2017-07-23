@@ -1,7 +1,7 @@
 /*
  * `file` 			stringlist.h
  * `written` 		July 23 2017 7:57:40
- * `last modified`	July 23 2017 7:57:40
+ * `last modified`	July 23 2017 19:44:07
  *
  *	Author:			R. Neshta
  *	Contact: 		Ruslan.Neshta@gmail.com
@@ -29,9 +29,12 @@ namespace lab1{
 			char *str;
 			ListNode* next;
 			ListNode* prev;
+
+			ListNode() :str(nullptr), next(nullptr), prev(nullptr){}
+			~ListNode(){}
 		};
 
-		using POSITION = const ListNode*;
+		typedef const ListNode* POSITION;
 
 		class StringList{
 			
@@ -59,12 +62,14 @@ namespace lab1{
 			 
 		public:
 			//Constructs an empty list for ListNode objects.
-			StringList(void);
-			~StringList(void);
+			StringList(void) :size(0), head(nullptr), tail(nullptr), iterator(nullptr){}
+			~StringList(void){ RemoveAll(); }
 
 			//Head/Tail Access 
-			const ListNode* GetHead();//Returns the head element of the list 
-			const ListNode* GetTail();//Returns the tail element of the list 
+			//Returns the head element of the list 
+			POSITION GetHead(){ return head; }
+			//Returns the tail element of the list 
+			POSITION GetTail(){ return tail; }
 
 			//Operations 
 			//Adds an element to the head of the list (makes a new head).
@@ -89,13 +94,13 @@ namespace lab1{
 
 			//Iteration 
 			//Gets the next element for iterating.
-			POSITION GetNext();
+			POSITION GetNext(){ return iterator ? iterator = iterator->next : nullptr; }
 			//Gets the previous element for iterating.
-			POSITION GetPrev();
+			POSITION GetPrev(){ return iterator ? iterator = iterator->prev : nullptr; }
 
 
 			//Retrieval/Modification
-			POSITION GetHeadPosition();
+			POSITION GetHeadPosition(){ return iterator = head; }
 
 
 			//Gets the element at a given position.
@@ -119,14 +124,20 @@ namespace lab1{
 
 			//Status 
 			//Returns the number of elements in this list.
-			int Getsize()const;
+			int Getsize()const{ return size; }
 			//Tests for the empty list condition (no elements).
-			bool IsEmpty()const;
-
-			void Printnode(POSITION p);
+			bool IsEmpty()const{ return 0 == size; }
+			//Prints out stored data
+			void Printnode(POSITION p)const{ printf("%s\n", p->str); }
 
 		private:
 			//put your own data members here
+
+			int size;
+			ListNode * head;
+			ListNode * tail;
+
+			POSITION iterator;
 		};
 
 		

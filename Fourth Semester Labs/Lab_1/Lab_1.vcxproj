@@ -87,6 +87,7 @@
     <ClCompile Include="carray.cpp" />
     <ClCompile Include="cstring.cpp" />
     <ClCompile Include="multistring.cpp" />
+    <ClCompile Include="stringlist.cpp" />
     <ClCompile Include="Test.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
