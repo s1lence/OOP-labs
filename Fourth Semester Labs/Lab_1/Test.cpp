@@ -71,7 +71,7 @@ int main(){
 	/*
 	 * c string tests
 	 */
-
+	/*
 	cstring::cString base("a b c d"), s1, s2, s3, copy = base;
 	copy.Print();
 
@@ -86,7 +86,7 @@ int main(){
 	s3.Print();
 
 	s1.SetAt(0, 'R');
-	std::cout << s1[0] << std::endl;
+	std::cout << base[0] << std::endl;
 	std::cout << s1.Find('R') << std::endl;
 
 	s3.Print();
@@ -98,6 +98,7 @@ int main(){
 	s3.Mid(2, 5).Print();
 	s3.Left(5).Print();
 	s3.Right(5).Print();
+	*/
 
 	/*
 	 *	c array tests
@@ -144,6 +145,8 @@ int main(){
 	/*
 	 *	string list tests
 	 */
+
+	
 
 	return 0;
 
