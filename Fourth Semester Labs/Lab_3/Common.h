@@ -65,7 +65,7 @@ namespace lab3{
 			// object can be initialised only from *.csv file
 			ProtectedBinaryTreeInterface(const char* csvFileName);
 
-			// cleanes trash
+			// cleans trash
 			~ProtectedBinaryTreeInterface();
 
 			// inserts new node
@@ -73,7 +73,7 @@ namespace lab3{
 
 			// applies given function to all elements in given range:
 			// first includes, last excludes
-			// result is expects to be container
+			// result expects to be container
 			template<class Callable>
 			void apply(Callable &obj2call, _bin_node * first, _bin_node * last = nullptr)const;
 
