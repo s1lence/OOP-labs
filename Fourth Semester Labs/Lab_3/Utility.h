@@ -27,13 +27,11 @@ namespace lab3{
 			*	class Container required to have push_back function.
 			*
 			*	This class requires Container holding pointers to Comparable,
-			*	otherwise - expected behaviour can't be garanteed.
+			*	otherwise - expected behavior can't be guaranteed.
 			*
 			*/
 
 		public:
-
-			bool callable = true;
 
 			// these is not allowed
 			Appliable() = delete;
@@ -50,18 +48,25 @@ namespace lab3{
 
 			void operator()(Comparable &item);
 
+			bool isValid()const{ return callable; }
+
 			void eraseContainer();
 
 			void setOperationTo(Operations op){ option = op; }
 
 		private:
-
+			bool callable = true; // permission to call
 			Comparable *data; // data which will be compared
-			Container *results; // container for storing seeked elements
+			Container *results; // container for storing searched elements
 			Operations option; // operation performed
 			Self *creator; // pointer to object derived from ProtectedBinaryTreeInterface
 		};
 
+		template<class S,class C1, class C2>
+		bool operator==(std::nullptr_t null, Appliable<S, C1, C2>& obj){ return !obj.isValid(); }
+
+		template<class S, class C1, class C2>
+		bool operator!=(std::nullptr_t null, Appliable<S, C1, C2>& obj){ return obj.isValid(); }
 	}
 
 }

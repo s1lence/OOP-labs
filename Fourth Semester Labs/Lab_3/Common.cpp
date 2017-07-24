@@ -91,7 +91,7 @@ namespace lab3{
 			if (nullptr == last)
 				last = getMax();
 
-			while (current != last){
+			while (nullptr != obj2call && current != last){
 				obj2call(*current);
 				current = next(*current);
 			}
@@ -101,8 +101,8 @@ namespace lab3{
 			*	if deletion required eraseContainer'll do all dirty job
 			*
 			*/
-
-			obj2call(*current);
+			if(nullptr != obj2call)
+				obj2call(*current);
 			obj2call.eraseContainer();
 		}
 
@@ -128,7 +128,7 @@ namespace lab3{
 				replacer->parent->left = replacer->left;
 				replacer->parent = item->parent;
 				
-				/* reverce binding nodes */
+				/* reverse binding nodes */
 				if (replacer->right)
 					replacer->right->parent = replacer;
 
@@ -141,7 +141,7 @@ namespace lab3{
 					else
 						replacer->parent->right = replacer;
 				}
-				else /* root needs to be repointed */
+				else /* root needs to be re-pointed */
 					root = replacer;
 			}
 			else{	/* item->right == nullptr */
@@ -219,7 +219,7 @@ namespace lab3{
 
 				return next->parent;
 			}
-			else{ /* searching the smalest of the right subtree */
+			else{ /* searching the smallest of the right subtree */
 				next = current.right;
 
 				while (next->left)
