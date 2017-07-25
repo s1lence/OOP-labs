@@ -8,7 +8,7 @@
  *
  *	`synopsis` 		list class interface
  *
- *	Description: 	list is common template class that holds doubly linked list and manages memory operations
+ *	Description: 	list is common template class that holds single linked list and manages memory operations
  *
  *	`note`			none
  */
@@ -16,6 +16,8 @@
 
 #ifndef _LIST_H_
 #define _LIST_H_
+
+#include<iostream>
 
 #include "Iterator.h"
 
@@ -29,34 +31,28 @@ namespace lab4{
 			struct ListNode{
 				T data;
 				ListNode * next;
-				ListNode(){
-					next = nullptr;
-				}
-				ListNode(T dat){
-					data = dat;
-				}
-				void Print(){
-					cout << data;
-				}
+				ListNode() :next(nullptr){}
+				ListNode(T dat) :data(dat), next(nullptr){}
+				void Print(){ std::cout << data << std::endl; }
 			};
 
 		public:
 			
 			typedef ListNode node_type;
-			typedef iterator::_iterator<node_type> iterator;
+			typedef lab4::iterator::_iterator<ListNode> iterator;
 
 			//constructors / destructor
-			List();
-			~list();
+			List() :head(nullptr), first(nullptr), last(nullptr){}
+			~List(){ clear(); }
 
 			//methods
-			iterator begin();//Returns an iterator addressing the first element 
-			iterator end();//Returns an iterator that addresses the location 
+			iterator begin(){ return first; }//Returns an iterator addressing the first element 
+			iterator end(){ return last; }//Returns an iterator that addresses the location 
 			//succeeding the last element
 
 
 			void clear();//Erases all the elements of a list.
-			bool empty();//Tests if a list is empty.
+			bool empty(){ return nullptr == head; }//Tests if a list is empty.
 
 			iterator find(const node_type & val);//Returns an iterator to the 
 			// first element in a list that 
@@ -76,15 +72,18 @@ namespace lab4{
 			//the target list and inserts it in first
 			// position of the argument list.
 			
-			void	Print();//Dumps list into the screen
+			void Print();//Dumps list into the screen
 		private:
 			node_type *head;
 			iterator *first, *last;
 		};
 
-	
 	}
 
 }
+
+#ifndef _LIST_IMPLEMENTATION_
+#include "List.cpp"
+#endif /* _LIST_IMPLEMENTATION_ */
 
 #endif /* _LIST_H_ */

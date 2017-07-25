@@ -31,7 +31,7 @@ namespace lab4{
 			typedef T value_type;
 			typedef _iterator<T> it_type;
 
-			_iterator() { ptr = 0; }
+			_iterator() { ptr = nullptr; }
 			_iterator(T* _ptr) { ptr = _ptr; }
 
 			T& operator *();
@@ -42,6 +42,8 @@ namespace lab4{
 			bool     operator==(const it_type& _iter) const;
 			bool     operator!=(const it_type& _iter) const;
 			bool empty(){ return ptr == nullptr; }
+
+			T& operator->(){ return *ptr; }
 		};
 
 		template <typename T>
@@ -74,7 +76,17 @@ namespace lab4{
 			return !(*this == _iter);
 		}
 
-	
+		template<class T>
+		bool operator==(std::nullptr_t, _iterator<T> &it)
+		{
+			return nullptr == ptr;
+		}
+
+		template<class T>
+		bool operator!=(std::nullptr_t, _iterator<T> &it)
+		{
+			return nullptr != ptr;
+		}
 	}
 
 }
