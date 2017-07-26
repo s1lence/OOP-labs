@@ -1,0 +1,23 @@
+About this solution:
+	it's contains projects which is realizations of labs 
+	from my Object Oriented Programming course in Igor Sikorskiy Kyiv Polytechnic Institute 
+	at Faculty of Applied Mathematics.
+
+Included projects:
+	Lab_1
+		Classes:
+			task is to realise a class by one of given variants: 
+				carray, cstring, multistring, stringlist
+	Lab_2
+		Inheritance and Polymorphism: 
+			task is to realise a class hierarchy that represents employee relationships(simple database)
+	Lab_3
+		Classes:
+			task is to realise a binary tree class by one of given variants:
+				library, tickets, station, dictionary
+	Lab_4
+		Classes:
+			task is to realise a templated single linked list class by one of given variants:
+				bus, cfile, references
+
+All this tasks for fourth semester.
