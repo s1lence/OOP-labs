@@ -1,7 +1,7 @@
 /*
  * `file` 			CFile.h
  * `written` 		July 25 2017 8:37:21
- * `last modified`	July 25 2017 17:25:24
+ * `last modified`	July 27 2017 0:52:43
  *
  *	Author:			R. Neshta
  *	Contact: 		Ruslan.Neshta@gmail.com
@@ -14,7 +14,8 @@
  *					-size.
  *					Methods must provide ability of creation and future work with List<CFile>.
  *					
- *	`note`			none
+ *	`note`			data expects to follow 'dd/mm/yyyy' format
+ *					csv string required to follow 'name;date' format
  */
  
 
@@ -30,6 +31,16 @@ namespace lab4{
 		class CFile{
 		public:
 			
+			CFile() = delete;
+			CFile(char* name, char* date);
+			CFile(char* csvData);
+			~CFile();
+
+			 /* comparison by data value */
+			bool operator<(const CFile&);
+
+			 /* changes file name */
+			void rename(char*);
 
 			friend std::ostream& operator<<(std::ostream& stream, CFile &obj);
 
@@ -39,9 +50,7 @@ namespace lab4{
 
 		};
 
-		std::ostream& operator<<(std::ostream& stream, CFile &obj){
-			stream << obj._filename << " " << obj._creation_date << std::endl;
-		}
+		std::ostream& operator<<(std::ostream& stream, CFile &obj);
 	
 	}
 

@@ -1,7 +1,7 @@
 /*
  * `file` 			List.h
  * `written` 		July 23 2017 21:32:32
- * `last modified`	July 23 2017 21:32:32
+ * `last modified`	July 27 2017 0:52:43
  *
  *	Author:			R. Neshta
  *	Contact: 		Ruslan.Neshta@gmail.com
@@ -75,7 +75,7 @@ namespace lab4{
 			void Print();//Dumps list into the screen
 		private:
 			node_type *head;
-			iterator *first, *last;
+			iterator first, last;
 		};
 
 	}

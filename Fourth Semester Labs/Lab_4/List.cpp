@@ -1,7 +1,7 @@
 /*
  * `file` 			List.cpp
  * `written` 		July 24 2017 8:26:50
- * `last modified`	July 24 2017 8:26:50
+ * `last modified`	July 27 2017 0:52:43
  *
  *	Author:			R. Neshta
  *	Contact: 		Ruslan.Neshta@gmail.com
@@ -29,14 +29,16 @@ namespace lab4{
 		template <class T>
 		void List<T>::clear()
 		{
-			iterator current = first, next = first->next;
-
-			while (current){
-				delete *current;
+			iterator current = first, next = first;
+			if(nullptr != next)
+				next++;
+			
+			while (nullptr != current){
+				delete &*current;
 				current = next;
 
-				if (next)
-					next = next->next;
+				if (nullptr != next)
+					next++;
 			}
 		}
 
@@ -44,8 +46,8 @@ namespace lab4{
 		typename List<T>::iterator List<T>::find(const node_type & val)
 		{
 			iterator it = first;
-			while (it && it->data != val.data){
-				it = it->next;
+			while (nullptr != it && (*it).data != val.data){
+				it++;
 			}
 
 			return it;
@@ -56,43 +58,45 @@ namespace lab4{
 		{
 			iterator it = first;
 
-			if (it){
-				first = first->next;
-				head = head->next;
+			if (nullptr != it){
+				first++;
+				head++;
 			}
 
-			delete *it;
+			delete &*it;
 		}
 
 		template <class T>
 		void List<T>::push_front(const node_type val)
 		{
-			node_type * tmp = new ListNode(val.data);
-			tmp->next = head;
-			head = tmp;
+			List<T>::iterator tmp(new node_type(val.data));
+			(*tmp).next = head;
+			head = &(*tmp);
 			first = head;
+			if (nullptr == last)
+				last = first;
 		}
 
 		template <class T>
 		void List<T>::remove(const node_type val)
 		{
 			iterator it = first, backup = nullptr;
-			while (it && it->data != val.data){
+			while (nullptr != it && (*it).data != val.data){
 				backup = it;
-				it = it->next;
+				++it;
 			}
 
-			if (it){
-				if (backup)
-					backup->next = it->next;
+			if (nullptr != it){
+				if (nullptr != backup)
+					(*backup).next = (*it).next;
 
 				if (it == last)
 					last = backup;
 
 				if (it == first)
-					first = first->next;
+					first++;
 
-				delete *it;
+				delete &*it;
 			}
 		}
 
@@ -100,7 +104,7 @@ namespace lab4{
 		int List<T>::size()
 		{
 			int size = 0;
-			for (iterator it = first; it != nullptr; it = it->next, ++size);
+			for (iterator it = first; it != nullptr; ++it, ++size);
 
 			return size;
 		}
@@ -110,30 +114,30 @@ namespace lab4{
 		{
 			iterator it = first;
 			if (_Where != first){
-				for (; it && it->next != _Where; it = it->next);
+				for (; nullptr != it && (*it).next != &*_Where; it++);
 
-				it->next = _Where->next;
-				if (nullptr == it->next)
+				(*it).next = (*_Where).next;
+				if (nullptr == (*it).next)
 					last = it;
 			}
 			else {
 				if (first == last)
-					last = last->next;
+					last++;
 
-				first = _Where->next;
-				head = first;
+				first = (*_Where).next;
+				head = &*first;
 			}
 
-			_Where->next = _Right.head;
-			_Right.head = _Where;
+			(*_Where).next = _Right.head;
+			_Right.head = &*_Where;
 			_Right.first = _Where;
 		}
 
 		template <class T>
 		void List<T>::Print()
 		{
-			for (iterator it = first; it != nullptr; it = it->next){
-				std::cout << it->data << std::endl;
+			for (iterator it = first; it != nullptr; it++){
+				std::cout << (*it).data << std::endl;
 			}
 		}
 	

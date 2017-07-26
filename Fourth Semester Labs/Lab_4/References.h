@@ -1,7 +1,7 @@
 /*
  * `file` 			References.h
  * `written` 		July 25 2017 8:40:19
- * `last modified`	July 25 2017 17:25:24
+ * `last modified`	July 27 2017 0:52:43
  *
  *	Author:			R. Neshta
  *	Contact: 		Ruslan.Neshta@gmail.com
@@ -14,7 +14,7 @@
  *					-number of pages where it appears.
  *					Methods must provide ability of creation and future work with List<References>.
  *					
- *	`note`			none
+ *	`note`			csv string required to follow 'word;page page page;size' format
  */
  
 
@@ -22,6 +22,7 @@
 #define _REFERENCES_H_
 
 #include<iostream>
+#include<sstream>
 
 namespace lab4{
 
@@ -29,7 +30,16 @@ namespace lab4{
 	
 		class References{
 		public:
-			
+			References() = delete;
+			References(char* w, int* p, int s);
+			References(char* csv);
+			~References();
+
+			 /* compares using _size member */
+			bool operator<(const References&);
+
+			 /* sets new word */
+			void rename(char* word);
 
 			friend std::ostream& operator<<(std::ostream& stream, References &obj);
 
@@ -39,9 +49,7 @@ namespace lab4{
 			int _size;//number of pages
 		};
 
-		std::ostream& operator<<(std::ostream& stream, References &obj){
-			stream << obj.word << " " << obj.pages << " " << obj._size << std::endl;
-		}
+		std::ostream& operator<<(std::ostream& stream, References &obj);
 	
 	}
 

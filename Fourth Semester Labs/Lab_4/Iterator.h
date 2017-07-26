@@ -1,7 +1,7 @@
 /*
  * `file` 			Iterator.h
  * `written` 		July 24 2017 7:03:34
- * `last modified`	July 24 2017 7:03:34
+ * `last modified`	July 27 2017 0:52:43
  *
  *	Author:			R. Neshta
  *	Contact: 		Ruslan.Neshta@gmail.com
@@ -43,7 +43,7 @@ namespace lab4{
 			bool     operator!=(const it_type& _iter) const;
 			bool empty(){ return ptr == nullptr; }
 
-			T& operator->(){ return *ptr; }
+			T& operator=(const T& it){ ptr = &it; return it; }
 		};
 
 		template <typename T>
@@ -79,14 +79,15 @@ namespace lab4{
 		template<class T>
 		bool operator==(std::nullptr_t, _iterator<T> &it)
 		{
-			return nullptr == ptr;
+			return it.empty();
 		}
 
 		template<class T>
 		bool operator!=(std::nullptr_t, _iterator<T> &it)
 		{
-			return nullptr != ptr;
+			return !it.empty();
 		}
+
 	}
 
 }

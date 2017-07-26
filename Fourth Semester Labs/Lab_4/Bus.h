@@ -1,7 +1,7 @@
 /*
  * `file` 			Bus.h
  * `written` 		July 25 2017 8:29:59
- * `last modified`	July 25 2017 17:25:24
+ * `last modified`	July 27 2017 0:52:43
  *
  *	Author:			R. Neshta
  *	Contact: 		Ruslan.Neshta@gmail.com
@@ -14,7 +14,7 @@
  *					-route number.
  *					Methods must provide ability of creation and future work with List<Bus>.
  *					
- *	`note`			none
+ *	`note`			csv string required to follow 'bus;route;driver' format
  */
  
 
@@ -29,8 +29,10 @@ namespace lab4{
 	
 		class Bus{
 		public:
+			Bus() = delete;
 			Bus(char* drv, char* busNmb, char* rtNmb);
-			Bus(char* routeNmb);
+			Bus(char* routeNmb, nullptr_t);
+			Bus(char* csv);
 			~Bus();
 
 			bool operator==(const Bus& bus);
@@ -45,9 +47,7 @@ namespace lab4{
 			char *route_number;
 		};
 
-		std::ostream& operator<<(std::ostream& stream, Bus &obj){
-			stream << obj.route_number << " " << obj.bus_number << " " << obj.driver << std::endl;
-		}
+		std::ostream& operator<<(std::ostream& stream, Bus &obj);
 	
 	}
 
