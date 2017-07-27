@@ -16,6 +16,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		description.txt = description.txt
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "N-grams Text Classifier", "N-grams Text Classifier\N-grams Text Classifier.vcxproj", "{6E52C179-72B1-40EF-90C8-72D07137D452}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -38,6 +40,10 @@ Global
 		{BD8E026C-1795-4545-8024-2139E9D8AD0E}.Debug|Win32.Build.0 = Debug|Win32
 		{BD8E026C-1795-4545-8024-2139E9D8AD0E}.Release|Win32.ActiveCfg = Release|Win32
 		{BD8E026C-1795-4545-8024-2139E9D8AD0E}.Release|Win32.Build.0 = Release|Win32
+		{6E52C179-72B1-40EF-90C8-72D07137D452}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6E52C179-72B1-40EF-90C8-72D07137D452}.Debug|Win32.Build.0 = Debug|Win32
+		{6E52C179-72B1-40EF-90C8-72D07137D452}.Release|Win32.ActiveCfg = Release|Win32
+		{6E52C179-72B1-40EF-90C8-72D07137D452}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
