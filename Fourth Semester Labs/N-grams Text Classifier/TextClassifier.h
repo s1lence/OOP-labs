@@ -1,7 +1,7 @@
 /*
  * `file` 			TextClassifier.h
  * `written` 		July 27 2017 8:07:53
- * `last modified`	July 27 2017 8:07:53
+ * `last modified`	July 28 2017 11:18:34
  *
  *	Author:			R. Neshta
  *	Contact: 		Ruslan.Neshta@gmail.com
@@ -50,10 +50,10 @@ namespace textclassifier{
 	public:
 
 		/* Name of classification defaults to 'Unknown.' */
-		Text—lassifier();
+		Text—lassifier() :_classification("Unknown"){}
 
 		/*Param classification - name of the classification (e.g., "Spam").    */
-		Text—lassifier(const std::string classification);
+		Text—lassifier(const std::string classification) :_classification(classification){}
 
 		/* returns the map N-grams and their frequencies.     */
 		frequency_map freqs() { return _freqs; }

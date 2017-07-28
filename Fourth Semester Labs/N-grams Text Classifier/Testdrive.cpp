@@ -1,7 +1,7 @@
 /*
  * `file` 			Testdrive.cpp
  * `written` 		July 27 2017 8:03:21
- * `last modified`	July 27 2017 8:03:21
+ * `last modified`	July 28 2017 11:18:34
  *
  *	Author:			R. Neshta
  *	Contact: 		Ruslan.Neshta@gmail.com
@@ -14,10 +14,16 @@
  */
 
 #include<iostream>
+#include<fstream>
+
+#include "TextClassifier.h"
+
+using namespace textclassifier;
+
 
 int main(){
 	const int n = 3;
-	char *categories[n] = { "spam",
+	std::string categories[n] = { "spam",
 		"programming",
 		"finance" };
 	Text—lassifier classifiers[n];
@@ -32,9 +38,9 @@ int main(){
 	}
 
 	Text—lassifier minscore = classifiers[0];
-	Text—lassifier text2classify();
+	Text—lassifier text2classify;
 
-	std::string file_name = "toclassfy.txt";
+	std::string file_name = "toclassify.txt";
 	std::ifstream in(file_name);
 	text2classify.learn(in);
 
