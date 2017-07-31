@@ -23,9 +23,7 @@ using namespace textclassifier;
 
 int main(){
 	const int n = 3;
-	std::string categories[n] = { "spam",
-		"programming",
-		"finance" };
+	std::string categories[n] = { "spam", "programming", "finance" };
 	Text—lassifier classifiers[n];
 	std::string catfound;
 	int i;
@@ -37,21 +35,20 @@ int main(){
 		classifiers[i].learn(in);
 	}
 
-	Text—lassifier minscore = classifiers[0];
+	Text—lassifier* minscore = &classifiers[0];
 	Text—lassifier text2classify;
 
 	std::string file_name = "toclassify.txt";
-	std::ifstream in(file_name);
+	std::ifstream in(file_name);	
 	text2classify.learn(in);
 
 	for (i = 1; i < n; i++){
-		if (text2classify.score(classifiers[i]) <
-			text2classify.score(minscore))
-			minscore = classifiers[i];
 
+		if (text2classify.score(classifiers[i]) < text2classify.score(*minscore))
+			minscore = &classifiers[i];
 	}
 
-	catfound = minscore.classification();
+	catfound = minscore->classification();
 	
 		return 0;
 }
