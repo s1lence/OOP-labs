@@ -24,7 +24,12 @@ using namespace textclassifier;
 int main(){
 	const int n = 3;
 	const char* prefix = R"(..\N-grams Text Classifier\)";
-
+	if(n==3)
+		std::cout << "3" << std::endl;
+	else{
+		if (n == 3)
+			std::cout << "3" << std::endl;
+	}
 	std::string categories[n] = { "spam", "programming", "finance" };
 	TextÑlassifier classifiers[n];
 
@@ -53,5 +58,5 @@ int main(){
 
 	catfound = minscore->classification();
 	
-		return 0;
+	return 0;
 }
