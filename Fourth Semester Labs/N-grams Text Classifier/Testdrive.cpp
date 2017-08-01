@@ -23,14 +23,17 @@ using namespace textclassifier;
 
 int main(){
 	const int n = 3;
+	const char* prefix = R"(..\N-grams Text Classifier\)";
+
 	std::string categories[n] = { "spam", "programming", "finance" };
 	Text—lassifier classifiers[n];
+
 	std::string catfound;
 	int i;
 
 	for (i = 0; i < n; i++){
 		classifiers[i].setclassification(categories[i]);
-		std::string file_name = categories[i] + ".txt";
+		std::string file_name = prefix + categories[i] + ".txt";
 		std::ifstream in(file_name);
 		classifiers[i].learn(in);
 	}

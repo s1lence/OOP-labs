@@ -54,7 +54,7 @@ namespace textclassifier{
 		 *
 		 * DESCRIPTION: 	class uses n-grams to classify text by calculating distance between texts
 		 *
-		 * `notes 			frequency map contains pairs of std::string(holds n-gram value) and unsinged long(holds
+		 * `notes 			frequency map contains pairs of std::string(holds n-gram value) and unsigned long(holds
 		 *					position of that n-gram in vector of frequency's sorted in non increasing order)
 		 *
 		 * `author 			R. Neshta
@@ -81,7 +81,7 @@ namespace textclassifier{
 		/* Name of classification defaults to 'Unknown.' */
 		Text—lassifier() :_classification("Unknown"){}
 
-		/*Param classification - name of the classification (e.g., "Spam").    */
+		/*Param classification - name of the classification (e.g., "Spam"). */
 		Text—lassifier(const std::string classification) :_classification(classification){}
 
 		/* returns the map N-grams and their frequencies. */
