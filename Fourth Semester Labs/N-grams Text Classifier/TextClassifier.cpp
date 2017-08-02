@@ -22,7 +22,7 @@ namespace textclassifier{
 		pair_type *first = (pair_type*)p2f;
 		pair_type *second = (pair_type*)p2s;
 		
-		return first->second<second->second ? -1 : first->second>second->second ? 1 : 0;
+		return first->second<second->second ? 1 : first->second>second->second ? -1 : 0;
 	}
 
 	void Text—lassifier::process(const std::string &word, frequency_map &buffer)
@@ -31,9 +31,9 @@ namespace textclassifier{
 			std::string n_gram("_");
 
 			int length = word.size();
-			for (int i = 0; i < length; ++i){
+			for (int i = 0; i <= length; ++i){
 			
-				int j = i;
+				int j = i ? i - 1 : i;
 				while (n_gram.size() < required && j < length)
 					n_gram += word[j++];
 
@@ -51,19 +51,17 @@ namespace textclassifier{
 		char symbol;
 		std::string word;
 
+		in.unsetf(std::ios_base::skipws);
 		while(!in.eof()){
 			in >> symbol;
 
-			if (
-				'a' >= symbol || 'z' <= symbol ||
-				'A' >= symbol || 'Z' <= symbol ||
-				'\'' == symbol
-				)
-			{
+			if ('a' <= symbol && 'z' >= symbol || 'A' <= symbol && 'Z' >= symbol
+				|| '\'' == symbol){
+
 				word += symbol;
 			}
-			else
-			{
+			
+			if (!word.empty()){
 				process(word, _freqs);
 				word.clear();
 			}
