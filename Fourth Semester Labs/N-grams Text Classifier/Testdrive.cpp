@@ -1,7 +1,7 @@
 /*
  * `file` 			Testdrive.cpp
  * `written` 		July 27 2017 8:03:21
- * `last modified`	August 01 2017 17:05:56
+ * `last modified`	August 03 2017 18:32:37
  *
  *	Author:			R. Neshta
  *	Contact: 		Ruslan.Neshta@gmail.com
@@ -33,9 +33,14 @@ int main(){
 
 	for (i = 0; i < n; i++){
 		classifiers[i].setclassification(categories[i]);
+
 		std::string file_name = prefix + categories[i] + ".txt";
 		std::ifstream in(file_name);
-		classifiers[i].learn(in);
+
+		if (!in.is_open())
+			std::cerr << file_name << ": file can't be opened" << std::endl;
+		else
+			classifiers[i].learn(in);
 	}
 
 	TextÑlassifier* minscore = &classifiers[0];
@@ -43,8 +48,9 @@ int main(){
 
 	std::string file_name = "toclassify.txt";
 	std::ifstream in(file_name);
+
 	if (!in.is_open()){
-		std::cerr << "file can't be opened" << std::endl;
+		std::cerr << file_name<<": file can't be opened" << std::endl;
 		return 1;
 	}
 
@@ -58,5 +64,7 @@ int main(){
 
 	catfound = minscore->classification();
 	
+	std::cout << catfound << std::endl;
+
 	return 0;
 }
