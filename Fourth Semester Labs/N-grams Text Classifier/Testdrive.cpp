@@ -1,16 +1,16 @@
 /*
- * `file` 			Testdrive.cpp
- * `written` 		July 27 2017 8:03:21
+ * `file` 			    Testdrive.cpp
+ * `written` 		    July 27 2017 8:03:21
  * `last modified`	August 03 2017 18:32:37
  *
- *	Author:			R. Neshta
- *	Contact: 		Ruslan.Neshta@gmail.com
+ *	Author:			    R. Neshta
+ *	Contact: 		    Ruslan.Neshta@gmail.com
  *
- *	`synopsis` 		testing text classifier
+ *	`synopsis` 		  testing text classifier
  *
- *	Description: 	text classifier used to classify text to one of given categories
+ *	Description: 	  text classifier used to classify text to one of given categories
  *					
- *	`note`			none
+ *	`note`			    none
  */
 
 #include<iostream>

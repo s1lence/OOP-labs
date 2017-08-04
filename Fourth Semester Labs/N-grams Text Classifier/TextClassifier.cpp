@@ -1,16 +1,16 @@
 /*
- * `file` 			TextClassifier.cpp
- * `written` 		July 28 2017 10:28:21
- * `last modified`	July 31 2017 23:00:25
+ * `file` 					TextClassifier.cpp
+ * `written` 				July 28 2017 10:28:21
+ * `last modified`	August 04 2017 22:00:59
  *
- *	Author:			R. Neshta
- *	Contact: 		Ruslan.Neshta@gmail.com
+ *	Author:					R. Neshta
+ *	Contact: 				Ruslan.Neshta@gmail.com
  *
- *	`synopsis` 		implementation of text classifier class
+ *	`synopsis` 			implementation of text classifier class
  *
- *	Description: 	heavy function of text classifier class realized here
+ *	Description: 		heavy function of text classifier class realized here
  *					
- *	`note`			none
+ *	`note`					none
  */
  
 #include "TextClassifier.h"
@@ -52,7 +52,7 @@ namespace textclassifier{
 		std::string word;
 
 		in.unsetf(std::ios_base::skipws);
-		while(!in.eof()){
+		while (!(in.eof() || in.fail())){
 			in >> symbol;
 
 			if ('a' <= symbol && 'z' >= symbol || 'A' <= symbol && 'Z' >= symbol
@@ -90,7 +90,7 @@ namespace textclassifier{
 		char symbol;
 		std::string buffer, freq;
 
-		while (!in.eof()){
+		while (!(in.eof() || in.fail())){
 			in >> symbol;
 			switch(symbol){
 

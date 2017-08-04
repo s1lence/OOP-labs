@@ -1,16 +1,16 @@
 /*
- * `file` 			TextClassifier.h
- * `written` 		July 27 2017 8:07:53
+ * `file` 			    TextClassifier.h
+ * `written` 		    July 27 2017 8:07:53
  * `last modified`	August 01 2017 17:05:56
  *
- *	Author:			R. Neshta
- *	Contact: 		Ruslan.Neshta@gmail.com
+ *	Author:			    R. Neshta
+ *	Contact: 		    Ruslan.Neshta@gmail.com
  *
- *	`synopsis` 		text classifier interface
+ *	`synopsis` 		  text classifier interface
  *
- *	Description: 	text classifier recognizes text to one of given categories
+ *	Description: 	  text classifier recognizes text to one of given categories
  *					
- *	`note`			none
+ *	`note`			    none
  */
  
 
