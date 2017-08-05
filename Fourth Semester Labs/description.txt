@@ -20,4 +20,7 @@ Included projects:
 			task is to realise a templated single linked list class by one of given variants:
 				bus, cfile, references
 
+	N-grams classifier:
+		simple text classifier using n-grams.
+
 All this tasks for fourth semester.
