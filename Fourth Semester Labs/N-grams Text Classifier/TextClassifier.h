@@ -46,7 +46,7 @@ namespace textclassifier{
 	class TextClassifier {
 		
 		/* 
-		 * `class       Text—lassifier
+		 * `class       TextClassifier
 		 *
 		 * `in          textclassifier
 		 *
