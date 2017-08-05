@@ -1,16 +1,16 @@
 /*
- * `file` 					TextClassifier.cpp
- * `written` 				July 28 2017 10:28:21
- * `last modified`	August 04 2017 22:00:59
+ * `file`           TextClassifier.cpp
+ * `written`        July 28 2017 10:28:21
+ * `last modified`  August 04 2017 22:00:59
  *
- *	Author:					R. Neshta
- *	Contact: 				Ruslan.Neshta@gmail.com
+ * Author:          R. Neshta
+ * Contact:         Ruslan.Neshta@gmail.com
  *
- *	`synopsis` 			implementation of text classifier class
+ * `synopsis`       implementation of text classifier class
  *
- *	Description: 		heavy function of text classifier class realized here
+ * Description:     heavy function of text classifier class realized here
  *					
- *	`note`					none
+ * `note`           none
  */
  
 #include "TextClassifier.h"
@@ -25,7 +25,7 @@ namespace textclassifier{
 		return first->second<second->second ? 1 : first->second>second->second ? -1 : 0;
 	}
 
-	void Text—lassifier::process(const std::string &word, frequency_map &buffer)
+	void TextClassifier::process(const std::string &word, frequency_map &buffer)
 	{
 		for (unsigned required = min; required <= max; ++required){
 			std::string n_gram("_");
@@ -46,7 +46,7 @@ namespace textclassifier{
 		}
 	}
 
-	void Text—lassifier::learn(std::istream& in)
+	void TextClassifier::learn(std::istream& in)
 	{
 		char symbol;
 		std::string word;
@@ -77,7 +77,7 @@ namespace textclassifier{
 			_freqs[values[i].first] = i;
 	}
 
-	void Text—lassifier::dumpprofile(std::ostream& out)
+	void TextClassifier::dumpprofile(std::ostream& out)
 	{
 		out << R"(c This file contains dump from ")" << _classification << R"(" classification.)" << std::endl;
 		out << "s" << _classification << std::endl;
@@ -85,7 +85,7 @@ namespace textclassifier{
 			out << "n" << i.first << " " << i.second << std::endl;
 	}
 
-	void Text—lassifier::learnfromdump(std::istream& in)
+	void TextClassifier::learnfromdump(std::istream& in)
 	{
 		char symbol;
 		std::string buffer, freq;
@@ -126,7 +126,7 @@ namespace textclassifier{
 		}
 	}
 
-	long int Text—lassifier::score(const Text—lassifier &tc)
+	long int TextClassifier::score(const TextClassifier &tc)
 	{
 		long int distance = 0;
 		maximiser maximum;

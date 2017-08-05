@@ -1,16 +1,16 @@
 /*
- * `file` 			    Testdrive.cpp
- * `written` 		    July 27 2017 8:03:21
- * `last modified`	August 03 2017 18:32:37
+ * `file`           Testdrive.cpp
+ * `written`        July 27 2017 8:03:21
+ * `last modified`  August 03 2017 18:32:37
  *
- *	Author:			    R. Neshta
- *	Contact: 		    Ruslan.Neshta@gmail.com
+ * Author:          R. Neshta
+ * Contact:         Ruslan.Neshta@gmail.com
  *
- *	`synopsis` 		  testing text classifier
+ * `synopsis`       testing text classifier
  *
- *	Description: 	  text classifier used to classify text to one of given categories
+ * Description:     text classifier used to classify text to one of given categories
  *					
- *	`note`			    none
+ * `note`           none
  */
 
 #include<iostream>
@@ -26,7 +26,7 @@ int main(){
 	const char* prefix = R"(..\N-grams Text Classifier\)";
 
 	std::string categories[n] = { "spam", "programming", "finance" };
-	Text—lassifier classifiers[n];
+	TextClassifier classifiers[n];
 
 	std::string catfound;
 	int i;
@@ -43,8 +43,8 @@ int main(){
 			classifiers[i].learn(in);
 	}
 
-	Text—lassifier* minscore = &classifiers[0];
-	Text—lassifier text2classify;
+	TextClassifier* minscore = &classifiers[0];
+	TextClassifier text2classify;
 
 	std::string file_name = "toclassify.txt";
 	std::ifstream in(file_name);
