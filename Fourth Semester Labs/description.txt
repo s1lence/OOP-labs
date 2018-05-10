@@ -6,18 +6,18 @@ About this solution:
 Included projects:
 	Lab_1
 		Classes:
-			task is to realise a class by one of given variants: 
+			task is to perform a class by one of given variants: 
 				carray, cstring, multistring, stringlist
 	Lab_2
 		Inheritance and Polymorphism: 
-			task is to realise a class hierarchy that represents employee relationships(simple database)
+			task is to perform a class hierarchy that represents employee relationships(simple database)
 	Lab_3
 		Classes:
-			task is to realise a binary tree class by one of given variants:
+			task is to perform a binary tree class by one of given variants:
 				library, tickets, station, dictionary
 	Lab_4
 		Classes:
-			task is to realise a templated single linked list class by one of given variants:
+			task is to perform a templated single linked list class by one of given variants:
 				bus, cfile, references
 
 	N-grams classifier:
